@@ -49,6 +49,11 @@ class CoreStub(object):
         request_serializer=core__pb2.TransactionsWithProofsRequest.SerializeToString,
         response_deserializer=core__pb2.TransactionsWithProofsResponse.FromString,
         )
+    self.getAddressBalance = channel.unary_unary(
+        '/org.dash.platform.dapi.v0.Core/getAddressBalance',
+        request_serializer=core__pb2.GetAddressBalanceRequest.SerializeToString,
+        response_deserializer=core__pb2.GetAddressBalanceResponse.FromString,
+        )
 
 
 class CoreServicer(object):
@@ -104,6 +109,13 @@ class CoreServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def getAddressBalance(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_CoreServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -141,6 +153,11 @@ def add_CoreServicer_to_server(servicer, server):
           servicer.subscribeToTransactionsWithProofs,
           request_deserializer=core__pb2.TransactionsWithProofsRequest.FromString,
           response_serializer=core__pb2.TransactionsWithProofsResponse.SerializeToString,
+      ),
+      'getAddressBalance': grpc.unary_unary_rpc_method_handler(
+          servicer.getAddressBalance,
+          request_deserializer=core__pb2.GetAddressBalanceRequest.FromString,
+          response_serializer=core__pb2.GetAddressBalanceResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

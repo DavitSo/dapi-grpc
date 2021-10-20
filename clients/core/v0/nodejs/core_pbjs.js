@@ -317,6 +317,39 @@ $root.org = (function() {
                          * @variation 2
                          */
 
+                        /**
+                         * Callback as used by {@link org.dash.platform.dapi.v0.Core#getAddressBalance}.
+                         * @memberof org.dash.platform.dapi.v0.Core
+                         * @typedef getAddressBalanceCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {org.dash.platform.dapi.v0.GetAddressBalanceResponse} [response] GetAddressBalanceResponse
+                         */
+
+                        /**
+                         * Calls getAddressBalance.
+                         * @function getAddressBalance
+                         * @memberof org.dash.platform.dapi.v0.Core
+                         * @instance
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceRequest} request GetAddressBalanceRequest message or plain object
+                         * @param {org.dash.platform.dapi.v0.Core.getAddressBalanceCallback} callback Node-style callback called with the error, if any, and GetAddressBalanceResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(Core.prototype.getAddressBalance = function getAddressBalance(request, callback) {
+                            return this.rpcCall(getAddressBalance, $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest, $root.org.dash.platform.dapi.v0.GetAddressBalanceResponse, request, callback);
+                        }, "name", { value: "getAddressBalance" });
+
+                        /**
+                         * Calls getAddressBalance.
+                         * @function getAddressBalance
+                         * @memberof org.dash.platform.dapi.v0.Core
+                         * @instance
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceRequest} request GetAddressBalanceRequest message or plain object
+                         * @returns {Promise<org.dash.platform.dapi.v0.GetAddressBalanceResponse>} Promise
+                         * @variation 2
+                         */
+
                         return Core;
                     })();
 
@@ -6377,6 +6410,447 @@ $root.org = (function() {
                         };
 
                         return InstantSendLockMessages;
+                    })();
+
+                    v0.GetAddressBalanceRequest = (function() {
+
+                        /**
+                         * Properties of a GetAddressBalanceRequest.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @interface IGetAddressBalanceRequest
+                         * @property {Array.<string>|null} [addresses] GetAddressBalanceRequest addresses
+                         */
+
+                        /**
+                         * Constructs a new GetAddressBalanceRequest.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @classdesc Represents a GetAddressBalanceRequest.
+                         * @implements IGetAddressBalanceRequest
+                         * @constructor
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceRequest=} [properties] Properties to set
+                         */
+                        function GetAddressBalanceRequest(properties) {
+                            this.addresses = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+
+                        /**
+                         * GetAddressBalanceRequest addresses.
+                         * @member {Array.<string>} addresses
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @instance
+                         */
+                        GetAddressBalanceRequest.prototype.addresses = $util.emptyArray;
+
+                        /**
+                         * Creates a new GetAddressBalanceRequest instance using the specified properties.
+                         * @function create
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceRequest=} [properties] Properties to set
+                         * @returns {org.dash.platform.dapi.v0.GetAddressBalanceRequest} GetAddressBalanceRequest instance
+                         */
+                        GetAddressBalanceRequest.create = function create(properties) {
+                            return new GetAddressBalanceRequest(properties);
+                        };
+
+                        /**
+                         * Encodes the specified GetAddressBalanceRequest message. Does not implicitly {@link org.dash.platform.dapi.v0.GetAddressBalanceRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceRequest} message GetAddressBalanceRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAddressBalanceRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.addresses != null && message.addresses.length)
+                                for (var i = 0; i < message.addresses.length; ++i)
+                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.addresses[i]);
+                            return writer;
+                        };
+
+                        /**
+                         * Encodes the specified GetAddressBalanceRequest message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.GetAddressBalanceRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceRequest} message GetAddressBalanceRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAddressBalanceRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+
+                        /**
+                         * Decodes a GetAddressBalanceRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {org.dash.platform.dapi.v0.GetAddressBalanceRequest} GetAddressBalanceRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAddressBalanceRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    if (!(message.addresses && message.addresses.length))
+                                        message.addresses = [];
+                                    message.addresses.push(reader.string());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Decodes a GetAddressBalanceRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {org.dash.platform.dapi.v0.GetAddressBalanceRequest} GetAddressBalanceRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAddressBalanceRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+
+                        /**
+                         * Verifies a GetAddressBalanceRequest message.
+                         * @function verify
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetAddressBalanceRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.addresses != null && message.hasOwnProperty("addresses")) {
+                                if (!Array.isArray(message.addresses))
+                                    return "addresses: array expected";
+                                for (var i = 0; i < message.addresses.length; ++i)
+                                    if (!$util.isString(message.addresses[i]))
+                                        return "addresses: string[] expected";
+                            }
+                            return null;
+                        };
+
+                        /**
+                         * Creates a GetAddressBalanceRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {org.dash.platform.dapi.v0.GetAddressBalanceRequest} GetAddressBalanceRequest
+                         */
+                        GetAddressBalanceRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest)
+                                return object;
+                            var message = new $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest();
+                            if (object.addresses) {
+                                if (!Array.isArray(object.addresses))
+                                    throw TypeError(".org.dash.platform.dapi.v0.GetAddressBalanceRequest.addresses: array expected");
+                                message.addresses = [];
+                                for (var i = 0; i < object.addresses.length; ++i)
+                                    message.addresses[i] = String(object.addresses[i]);
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Creates a plain object from a GetAddressBalanceRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.GetAddressBalanceRequest} message GetAddressBalanceRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetAddressBalanceRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.addresses = [];
+                            if (message.addresses && message.addresses.length) {
+                                object.addresses = [];
+                                for (var j = 0; j < message.addresses.length; ++j)
+                                    object.addresses[j] = message.addresses[j];
+                            }
+                            return object;
+                        };
+
+                        /**
+                         * Converts this GetAddressBalanceRequest to JSON.
+                         * @function toJSON
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetAddressBalanceRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+
+                        return GetAddressBalanceRequest;
+                    })();
+
+                    v0.GetAddressBalanceResponse = (function() {
+
+                        /**
+                         * Properties of a GetAddressBalanceResponse.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @interface IGetAddressBalanceResponse
+                         * @property {number|Long|null} [balance] GetAddressBalanceResponse balance
+                         * @property {number|Long|null} [received] GetAddressBalanceResponse received
+                         */
+
+                        /**
+                         * Constructs a new GetAddressBalanceResponse.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @classdesc Represents a GetAddressBalanceResponse.
+                         * @implements IGetAddressBalanceResponse
+                         * @constructor
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceResponse=} [properties] Properties to set
+                         */
+                        function GetAddressBalanceResponse(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+
+                        /**
+                         * GetAddressBalanceResponse balance.
+                         * @member {number|Long} balance
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @instance
+                         */
+                        GetAddressBalanceResponse.prototype.balance = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+                        /**
+                         * GetAddressBalanceResponse received.
+                         * @member {number|Long} received
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @instance
+                         */
+                        GetAddressBalanceResponse.prototype.received = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+                        /**
+                         * Creates a new GetAddressBalanceResponse instance using the specified properties.
+                         * @function create
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceResponse=} [properties] Properties to set
+                         * @returns {org.dash.platform.dapi.v0.GetAddressBalanceResponse} GetAddressBalanceResponse instance
+                         */
+                        GetAddressBalanceResponse.create = function create(properties) {
+                            return new GetAddressBalanceResponse(properties);
+                        };
+
+                        /**
+                         * Encodes the specified GetAddressBalanceResponse message. Does not implicitly {@link org.dash.platform.dapi.v0.GetAddressBalanceResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceResponse} message GetAddressBalanceResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAddressBalanceResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.balance != null && Object.hasOwnProperty.call(message, "balance"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.balance);
+                            if (message.received != null && Object.hasOwnProperty.call(message, "received"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.received);
+                            return writer;
+                        };
+
+                        /**
+                         * Encodes the specified GetAddressBalanceResponse message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.GetAddressBalanceResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressBalanceResponse} message GetAddressBalanceResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAddressBalanceResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+
+                        /**
+                         * Decodes a GetAddressBalanceResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {org.dash.platform.dapi.v0.GetAddressBalanceResponse} GetAddressBalanceResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAddressBalanceResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.GetAddressBalanceResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.balance = reader.uint64();
+                                    break;
+                                case 2:
+                                    message.received = reader.uint64();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Decodes a GetAddressBalanceResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {org.dash.platform.dapi.v0.GetAddressBalanceResponse} GetAddressBalanceResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAddressBalanceResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+
+                        /**
+                         * Verifies a GetAddressBalanceResponse message.
+                         * @function verify
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetAddressBalanceResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.balance != null && message.hasOwnProperty("balance"))
+                                if (!$util.isInteger(message.balance) && !(message.balance && $util.isInteger(message.balance.low) && $util.isInteger(message.balance.high)))
+                                    return "balance: integer|Long expected";
+                            if (message.received != null && message.hasOwnProperty("received"))
+                                if (!$util.isInteger(message.received) && !(message.received && $util.isInteger(message.received.low) && $util.isInteger(message.received.high)))
+                                    return "received: integer|Long expected";
+                            return null;
+                        };
+
+                        /**
+                         * Creates a GetAddressBalanceResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {org.dash.platform.dapi.v0.GetAddressBalanceResponse} GetAddressBalanceResponse
+                         */
+                        GetAddressBalanceResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.org.dash.platform.dapi.v0.GetAddressBalanceResponse)
+                                return object;
+                            var message = new $root.org.dash.platform.dapi.v0.GetAddressBalanceResponse();
+                            if (object.balance != null)
+                                if ($util.Long)
+                                    (message.balance = $util.Long.fromValue(object.balance)).unsigned = true;
+                                else if (typeof object.balance === "string")
+                                    message.balance = parseInt(object.balance, 10);
+                                else if (typeof object.balance === "number")
+                                    message.balance = object.balance;
+                                else if (typeof object.balance === "object")
+                                    message.balance = new $util.LongBits(object.balance.low >>> 0, object.balance.high >>> 0).toNumber(true);
+                            if (object.received != null)
+                                if ($util.Long)
+                                    (message.received = $util.Long.fromValue(object.received)).unsigned = true;
+                                else if (typeof object.received === "string")
+                                    message.received = parseInt(object.received, 10);
+                                else if (typeof object.received === "number")
+                                    message.received = object.received;
+                                else if (typeof object.received === "object")
+                                    message.received = new $util.LongBits(object.received.low >>> 0, object.received.high >>> 0).toNumber(true);
+                            return message;
+                        };
+
+                        /**
+                         * Creates a plain object from a GetAddressBalanceResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.GetAddressBalanceResponse} message GetAddressBalanceResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetAddressBalanceResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                if ($util.Long) {
+                                    var long = new $util.Long(0, 0, true);
+                                    object.balance = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                } else
+                                    object.balance = options.longs === String ? "0" : 0;
+                                if ($util.Long) {
+                                    var long = new $util.Long(0, 0, true);
+                                    object.received = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                } else
+                                    object.received = options.longs === String ? "0" : 0;
+                            }
+                            if (message.balance != null && message.hasOwnProperty("balance"))
+                                if (typeof message.balance === "number")
+                                    object.balance = options.longs === String ? String(message.balance) : message.balance;
+                                else
+                                    object.balance = options.longs === String ? $util.Long.prototype.toString.call(message.balance) : options.longs === Number ? new $util.LongBits(message.balance.low >>> 0, message.balance.high >>> 0).toNumber(true) : message.balance;
+                            if (message.received != null && message.hasOwnProperty("received"))
+                                if (typeof message.received === "number")
+                                    object.received = options.longs === String ? String(message.received) : message.received;
+                                else
+                                    object.received = options.longs === String ? $util.Long.prototype.toString.call(message.received) : options.longs === Number ? new $util.LongBits(message.received.low >>> 0, message.received.high >>> 0).toNumber(true) : message.received;
+                            return object;
+                        };
+
+                        /**
+                         * Converts this GetAddressBalanceResponse to JSON.
+                         * @function toJSON
+                         * @memberof org.dash.platform.dapi.v0.GetAddressBalanceResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetAddressBalanceResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+
+                        return GetAddressBalanceResponse;
                     })();
 
                     return v0;

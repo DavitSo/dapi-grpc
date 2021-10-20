@@ -106,4 +106,16 @@
              responseClass:[TransactionsWithProofsResponse class]
         responsesWriteable:[GRXWriteable writeableWithEventHandler:eventHandler]];
 }
+#pragma mark getAddressBalance(GetAddressBalanceRequest) returns (GetAddressBalanceResponse)
+
+- (void)getAddressBalanceWithRequest:(GetAddressBalanceRequest *)request handler:(void(^)(GetAddressBalanceResponse *_Nullable response, NSError *_Nullable error))handler{
+  [[self RPCTogetAddressBalanceWithRequest:request handler:handler] start];
+}
+// Returns a not-yet-started RPC object.
+- (GRPCProtoCall *)RPCTogetAddressBalanceWithRequest:(GetAddressBalanceRequest *)request handler:(void(^)(GetAddressBalanceResponse *_Nullable response, NSError *_Nullable error))handler{
+  return [self RPCToMethod:@"getAddressBalance"
+            requestsWriter:[GRXWriter writerWithValue:request]
+             responseClass:[GetAddressBalanceResponse class]
+        responsesWriteable:[GRXWriteable writeableWithSingleHandler:handler]];
+}
 @end

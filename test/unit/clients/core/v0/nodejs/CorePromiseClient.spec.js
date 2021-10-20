@@ -17,6 +17,7 @@ describe('CorePromiseClient', () => {
       getTransaction: this.sinon.stub().resolves(response),
       getEstimatedTransactionFee: this.sinon.stub().resolves(response),
       subscribeToTransactionsWithProofs: this.sinon.stub().resolves(response),
+      getAddressBalance: this.sinon.stub().resolves(response),
     };
   });
 
@@ -31,6 +32,25 @@ describe('CorePromiseClient', () => {
     it('should throw an error when metadata is not an object', async () => {
       try {
         corePromiseClient.getStatus({}, 'metadata');
+
+        expect.fail('Error was not thrown');
+      } catch (e) {
+        expect(e.message).to.equal('metadata must be an object');
+      }
+    });
+  });
+
+  describe('#getAddressBalance', () => {
+    it('should return balances', async () => {
+      const result = await corePromiseClient.getAddressBalance(request);
+
+      expect(result).to.equal(response);
+      expect(corePromiseClient.client.getAddressBalance).to.be.calledOnceWith(request);
+    });
+
+    it('should throw an error when metadata is not an object', async () => {
+      try {
+        corePromiseClient.getAddressBalance({}, 'metadata');
 
         expect.fail('Error was not thrown');
       } catch (e) {

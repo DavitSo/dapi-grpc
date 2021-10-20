@@ -10,6 +10,7 @@ service Core {
   rpc getEstimatedTransactionFee (GetEstimatedTransactionFeeRequest) returns (GetEstimatedTransactionFeeResponse);
   rpc subscribeToBlockHeadersWithChainLocks (BlockHeadersWithChainLocksRequest) returns (stream BlockHeadersWithChainLocksResponse);
   rpc subscribeToTransactionsWithProofs (TransactionsWithProofsRequest) returns (stream TransactionsWithProofsResponse);
+  rpc getAddressBalance (GetAddressBalanceRequest) returns (GetAddressBalanceResponse);
 }
 
 message GetStatusRequest {
@@ -185,4 +186,12 @@ message RawTransactions {
 
 message InstantSendLockMessages {
   repeated bytes messages = 1;
+}
+
+message GetAddressBalanceRequest {
+  repeated string addresses = 1;
+}
+message GetAddressBalanceResponse {
+  uint64 balance = 1;
+  uint64 received = 2;
 }

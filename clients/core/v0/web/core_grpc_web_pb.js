@@ -624,5 +624,85 @@ proto.org.dash.platform.dapi.v0.CorePromiseClient.prototype.subscribeToTransacti
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest,
+ *   !proto.org.dash.platform.dapi.v0.GetAddressBalanceResponse>}
+ */
+const methodDescriptor_Core_getAddressBalance = new grpc.web.MethodDescriptor(
+  '/org.dash.platform.dapi.v0.Core/getAddressBalance',
+  grpc.web.MethodType.UNARY,
+  proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest,
+  proto.org.dash.platform.dapi.v0.GetAddressBalanceResponse,
+  /**
+   * @param {!proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.org.dash.platform.dapi.v0.GetAddressBalanceResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest,
+ *   !proto.org.dash.platform.dapi.v0.GetAddressBalanceResponse>}
+ */
+const methodInfo_Core_getAddressBalance = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.org.dash.platform.dapi.v0.GetAddressBalanceResponse,
+  /**
+   * @param {!proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.org.dash.platform.dapi.v0.GetAddressBalanceResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.org.dash.platform.dapi.v0.GetAddressBalanceResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.org.dash.platform.dapi.v0.GetAddressBalanceResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.org.dash.platform.dapi.v0.CoreClient.prototype.getAddressBalance =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/org.dash.platform.dapi.v0.Core/getAddressBalance',
+      request,
+      metadata || {},
+      methodDescriptor_Core_getAddressBalance,
+      callback);
+};
+
+
+/**
+ * @param {!proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.org.dash.platform.dapi.v0.GetAddressBalanceResponse>}
+ *     Promise that resolves to the response
+ */
+proto.org.dash.platform.dapi.v0.CorePromiseClient.prototype.getAddressBalance =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/org.dash.platform.dapi.v0.Core/getAddressBalance',
+      request,
+      metadata || {},
+      methodDescriptor_Core_getAddressBalance);
+};
+
+
 module.exports = proto.org.dash.platform.dapi.v0;
 

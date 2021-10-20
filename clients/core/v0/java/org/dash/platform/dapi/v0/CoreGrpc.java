@@ -111,6 +111,18 @@ public final class CoreGrpc {
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               org.dash.platform.dapi.v0.CoreOuterClass.TransactionsWithProofsResponse.getDefaultInstance()))
           .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceRequest,
+      org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceResponse> METHOD_GET_ADDRESS_BALANCE =
+      io.grpc.MethodDescriptor.<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceRequest, org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "org.dash.platform.dapi.v0.Core", "getAddressBalance"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceResponse.getDefaultInstance()))
+          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -188,6 +200,13 @@ public final class CoreGrpc {
       asyncUnimplementedUnaryCall(METHOD_SUBSCRIBE_TO_TRANSACTIONS_WITH_PROOFS, responseObserver);
     }
 
+    /**
+     */
+    public void getAddressBalance(org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceRequest request,
+        io.grpc.stub.StreamObserver<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_ADDRESS_BALANCE, responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -239,6 +258,13 @@ public final class CoreGrpc {
                 org.dash.platform.dapi.v0.CoreOuterClass.TransactionsWithProofsRequest,
                 org.dash.platform.dapi.v0.CoreOuterClass.TransactionsWithProofsResponse>(
                   this, METHODID_SUBSCRIBE_TO_TRANSACTIONS_WITH_PROOFS)))
+          .addMethod(
+            METHOD_GET_ADDRESS_BALANCE,
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceRequest,
+                org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceResponse>(
+                  this, METHODID_GET_ADDRESS_BALANCE)))
           .build();
     }
   }
@@ -316,6 +342,14 @@ public final class CoreGrpc {
       asyncServerStreamingCall(
           getChannel().newCall(METHOD_SUBSCRIBE_TO_TRANSACTIONS_WITH_PROOFS, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getAddressBalance(org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceRequest request,
+        io.grpc.stub.StreamObserver<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GET_ADDRESS_BALANCE, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -386,6 +420,13 @@ public final class CoreGrpc {
       return blockingServerStreamingCall(
           getChannel(), METHOD_SUBSCRIBE_TO_TRANSACTIONS_WITH_PROOFS, getCallOptions(), request);
     }
+
+    /**
+     */
+    public org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceResponse getAddressBalance(org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GET_ADDRESS_BALANCE, getCallOptions(), request);
+    }
   }
 
   /**
@@ -445,6 +486,14 @@ public final class CoreGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_GET_ESTIMATED_TRANSACTION_FEE, getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceResponse> getAddressBalance(
+        org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GET_ADDRESS_BALANCE, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_GET_STATUS = 0;
@@ -454,6 +503,7 @@ public final class CoreGrpc {
   private static final int METHODID_GET_ESTIMATED_TRANSACTION_FEE = 4;
   private static final int METHODID_SUBSCRIBE_TO_BLOCK_HEADERS_WITH_CHAIN_LOCKS = 5;
   private static final int METHODID_SUBSCRIBE_TO_TRANSACTIONS_WITH_PROOFS = 6;
+  private static final int METHODID_GET_ADDRESS_BALANCE = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -500,6 +550,10 @@ public final class CoreGrpc {
           serviceImpl.subscribeToTransactionsWithProofs((org.dash.platform.dapi.v0.CoreOuterClass.TransactionsWithProofsRequest) request,
               (io.grpc.stub.StreamObserver<org.dash.platform.dapi.v0.CoreOuterClass.TransactionsWithProofsResponse>) responseObserver);
           break;
+        case METHODID_GET_ADDRESS_BALANCE:
+          serviceImpl.getAddressBalance((org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceRequest) request,
+              (io.grpc.stub.StreamObserver<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressBalanceResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -540,6 +594,7 @@ public final class CoreGrpc {
               .addMethod(METHOD_GET_ESTIMATED_TRANSACTION_FEE)
               .addMethod(METHOD_SUBSCRIBE_TO_BLOCK_HEADERS_WITH_CHAIN_LOCKS)
               .addMethod(METHOD_SUBSCRIBE_TO_TRANSACTIONS_WITH_PROOFS)
+              .addMethod(METHOD_GET_ADDRESS_BALANCE)
               .build();
         }
       }

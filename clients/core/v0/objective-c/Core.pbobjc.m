@@ -1747,6 +1747,103 @@ typedef struct InstantSendLockMessages__storage_ {
 
 @end
 
+#pragma mark - GetAddressBalanceRequest
+
+@implementation GetAddressBalanceRequest
+
+@dynamic addressesArray, addressesArray_Count;
+
+typedef struct GetAddressBalanceRequest__storage_ {
+  uint32_t _has_storage_[1];
+  NSMutableArray *addressesArray;
+} GetAddressBalanceRequest__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "addressesArray",
+        .dataTypeSpecific.className = NULL,
+        .number = GetAddressBalanceRequest_FieldNumber_AddressesArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(GetAddressBalanceRequest__storage_, addressesArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[GetAddressBalanceRequest class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(GetAddressBalanceRequest__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - GetAddressBalanceResponse
+
+@implementation GetAddressBalanceResponse
+
+@dynamic balance;
+@dynamic received;
+
+typedef struct GetAddressBalanceResponse__storage_ {
+  uint32_t _has_storage_[1];
+  uint64_t balance;
+  uint64_t received;
+} GetAddressBalanceResponse__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "balance",
+        .dataTypeSpecific.className = NULL,
+        .number = GetAddressBalanceResponse_FieldNumber_Balance,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(GetAddressBalanceResponse__storage_, balance),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt64,
+      },
+      {
+        .name = "received",
+        .dataTypeSpecific.className = NULL,
+        .number = GetAddressBalanceResponse_FieldNumber_Received,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(GetAddressBalanceResponse__storage_, received),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt64,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[GetAddressBalanceResponse class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(GetAddressBalanceResponse__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
 
 #pragma clang diagnostic pop
 

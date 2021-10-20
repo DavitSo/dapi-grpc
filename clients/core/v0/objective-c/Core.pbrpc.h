@@ -60,6 +60,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (GRPCProtoCall *)RPCTosubscribeToTransactionsWithProofsWithRequest:(TransactionsWithProofsRequest *)request eventHandler:(void(^)(BOOL done, TransactionsWithProofsResponse *_Nullable response, NSError *_Nullable error))eventHandler;
 
 
+#pragma mark getAddressBalance(GetAddressBalanceRequest) returns (GetAddressBalanceResponse)
+
+- (void)getAddressBalanceWithRequest:(GetAddressBalanceRequest *)request handler:(void(^)(GetAddressBalanceResponse *_Nullable response, NSError *_Nullable error))handler;
+
+- (GRPCProtoCall *)RPCTogetAddressBalanceWithRequest:(GetAddressBalanceRequest *)request handler:(void(^)(GetAddressBalanceResponse *_Nullable response, NSError *_Nullable error))handler;
+
+
 @end
 
 /**

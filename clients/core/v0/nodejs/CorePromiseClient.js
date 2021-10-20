@@ -37,6 +37,8 @@ const {
             GetEstimatedTransactionFeeResponse: PBJSGetEstimatedTransactionFeeResponse,
             TransactionsWithProofsRequest: PBJSTransactionsWithProofsRequest,
             TransactionsWithProofsResponse: PBJSTransactionsWithProofsResponse,
+            GetAddressBalanceRequest: PBJSGetAddressBalanceRequest,
+            PBJSGetAddressBalanceResponse: PBJSGetAddressBalanceResponse,
           },
         },
       },
@@ -52,6 +54,7 @@ const {
   BlockHeadersWithChainLocksResponse: ProtocBlockHeadersWithChainLocksResponse,
   GetEstimatedTransactionFeeResponse: ProtocGetEstimatedTransactionFeeResponse,
   TransactionsWithProofsResponse: ProtocTransactionsWithProofsResponse,
+  GetAddressBalanceResponse: ProtocGetAddressBalanceResponse,
 } = require('./core_protoc');
 
 const getCoreDefinition = require('../../../../lib/getCoreDefinition');
@@ -306,6 +309,37 @@ class CorePromiseClient {
             ),
             protobufToJsonFactory(
               PBJSTransactionsWithProofsRequest,
+            ),
+          ),
+        ],
+        ...options,
+      },
+    );
+  }
+
+  /**
+   * @param {!GetAddressBalanceRequest} getAddressBalanceRequest
+   * @param {?Object<string, string>} metadata
+   * @param {CallOptions} [options={}]
+   * @return {Promise<!GetAddressBalanceResponse>}
+   */
+  getAddressBalance(getAddressBalanceRequest, metadata = {}, options = {}) {
+    if (!isObject(metadata)) {
+      throw new Error('metadata must be an object');
+    }
+
+    return this.client.getAddressBalance(
+      getAddressBalanceRequest,
+      convertObjectToMetadata(metadata),
+      {
+        interceptors: [
+          jsonToProtobufInterceptorFactory(
+            jsonToProtobufFactory(
+              ProtocGetAddressBalanceResponse,
+              PBJSGetAddressBalanceResponse,
+            ),
+            protobufToJsonFactory(
+              PBJSGetAddressBalanceRequest,
             ),
           ),
         ],
