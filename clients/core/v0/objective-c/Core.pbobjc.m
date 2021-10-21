@@ -1751,11 +1751,11 @@ typedef struct InstantSendLockMessages__storage_ {
 
 @implementation GetAddressBalanceRequest
 
-@dynamic itemsArray, itemsArray_Count;
+@dynamic addressesArray, addressesArray_Count;
 
 typedef struct GetAddressBalanceRequest__storage_ {
   uint32_t _has_storage_[1];
-  NSMutableArray *itemsArray;
+  NSMutableArray *addressesArray;
 } GetAddressBalanceRequest__storage_;
 
 // This method is threadsafe because it is initially called
@@ -1765,11 +1765,11 @@ typedef struct GetAddressBalanceRequest__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "itemsArray",
+        .name = "addressesArray",
         .dataTypeSpecific.className = GPBStringifySymbol(GetAddressBalanceRequest_Addresses),
-        .number = GetAddressBalanceRequest_FieldNumber_ItemsArray,
+        .number = GetAddressBalanceRequest_FieldNumber_AddressesArray,
         .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(GetAddressBalanceRequest__storage_, itemsArray),
+        .offset = (uint32_t)offsetof(GetAddressBalanceRequest__storage_, addressesArray),
         .flags = GPBFieldRepeated,
         .dataType = GPBDataTypeMessage,
       },
@@ -1794,11 +1794,11 @@ typedef struct GetAddressBalanceRequest__storage_ {
 
 @implementation GetAddressBalanceRequest_Addresses
 
-@dynamic addressesArray, addressesArray_Count;
+@dynamic itemsArray, itemsArray_Count;
 
 typedef struct GetAddressBalanceRequest_Addresses__storage_ {
   uint32_t _has_storage_[1];
-  NSMutableArray *addressesArray;
+  NSMutableArray *itemsArray;
 } GetAddressBalanceRequest_Addresses__storage_;
 
 // This method is threadsafe because it is initially called
@@ -1808,11 +1808,11 @@ typedef struct GetAddressBalanceRequest_Addresses__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "addressesArray",
+        .name = "itemsArray",
         .dataTypeSpecific.className = NULL,
-        .number = GetAddressBalanceRequest_Addresses_FieldNumber_AddressesArray,
+        .number = GetAddressBalanceRequest_Addresses_FieldNumber_ItemsArray,
         .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(GetAddressBalanceRequest_Addresses__storage_, addressesArray),
+        .offset = (uint32_t)offsetof(GetAddressBalanceRequest_Addresses__storage_, itemsArray),
         .flags = GPBFieldRepeated,
         .dataType = GPBDataTypeString,
       },

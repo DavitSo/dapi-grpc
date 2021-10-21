@@ -6418,7 +6418,7 @@ $root.org = (function() {
                          * Properties of a GetAddressBalanceRequest.
                          * @memberof org.dash.platform.dapi.v0
                          * @interface IGetAddressBalanceRequest
-                         * @property {Array.<org.dash.platform.dapi.v0.GetAddressBalanceRequest.IAddresses>|null} [items] GetAddressBalanceRequest items
+                         * @property {Array.<org.dash.platform.dapi.v0.GetAddressBalanceRequest.IAddresses>|null} [addresses] GetAddressBalanceRequest addresses
                          */
 
                         /**
@@ -6430,7 +6430,7 @@ $root.org = (function() {
                          * @param {org.dash.platform.dapi.v0.IGetAddressBalanceRequest=} [properties] Properties to set
                          */
                         function GetAddressBalanceRequest(properties) {
-                            this.items = [];
+                            this.addresses = [];
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -6438,12 +6438,12 @@ $root.org = (function() {
                         }
 
                         /**
-                         * GetAddressBalanceRequest items.
-                         * @member {Array.<org.dash.platform.dapi.v0.GetAddressBalanceRequest.IAddresses>} items
+                         * GetAddressBalanceRequest addresses.
+                         * @member {Array.<org.dash.platform.dapi.v0.GetAddressBalanceRequest.IAddresses>} addresses
                          * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
                          * @instance
                          */
-                        GetAddressBalanceRequest.prototype.items = $util.emptyArray;
+                        GetAddressBalanceRequest.prototype.addresses = $util.emptyArray;
 
                         /**
                          * Creates a new GetAddressBalanceRequest instance using the specified properties.
@@ -6469,9 +6469,9 @@ $root.org = (function() {
                         GetAddressBalanceRequest.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.items != null && message.items.length)
-                                for (var i = 0; i < message.items.length; ++i)
-                                    $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.encode(message.items[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.addresses != null && message.addresses.length)
+                                for (var i = 0; i < message.addresses.length; ++i)
+                                    $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.encode(message.addresses[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                             return writer;
                         };
 
@@ -6507,9 +6507,9 @@ $root.org = (function() {
                                 var tag = reader.uint32();
                                 switch (tag >>> 3) {
                                 case 1:
-                                    if (!(message.items && message.items.length))
-                                        message.items = [];
-                                    message.items.push($root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.decode(reader, reader.uint32()));
+                                    if (!(message.addresses && message.addresses.length))
+                                        message.addresses = [];
+                                    message.addresses.push($root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.decode(reader, reader.uint32()));
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -6546,13 +6546,13 @@ $root.org = (function() {
                         GetAddressBalanceRequest.verify = function verify(message) {
                             if (typeof message !== "object" || message === null)
                                 return "object expected";
-                            if (message.items != null && message.hasOwnProperty("items")) {
-                                if (!Array.isArray(message.items))
-                                    return "items: array expected";
-                                for (var i = 0; i < message.items.length; ++i) {
-                                    var error = $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.verify(message.items[i]);
+                            if (message.addresses != null && message.hasOwnProperty("addresses")) {
+                                if (!Array.isArray(message.addresses))
+                                    return "addresses: array expected";
+                                for (var i = 0; i < message.addresses.length; ++i) {
+                                    var error = $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.verify(message.addresses[i]);
                                     if (error)
-                                        return "items." + error;
+                                        return "addresses." + error;
                                 }
                             }
                             return null;
@@ -6570,14 +6570,14 @@ $root.org = (function() {
                             if (object instanceof $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest)
                                 return object;
                             var message = new $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest();
-                            if (object.items) {
-                                if (!Array.isArray(object.items))
-                                    throw TypeError(".org.dash.platform.dapi.v0.GetAddressBalanceRequest.items: array expected");
-                                message.items = [];
-                                for (var i = 0; i < object.items.length; ++i) {
-                                    if (typeof object.items[i] !== "object")
-                                        throw TypeError(".org.dash.platform.dapi.v0.GetAddressBalanceRequest.items: object expected");
-                                    message.items[i] = $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.fromObject(object.items[i]);
+                            if (object.addresses) {
+                                if (!Array.isArray(object.addresses))
+                                    throw TypeError(".org.dash.platform.dapi.v0.GetAddressBalanceRequest.addresses: array expected");
+                                message.addresses = [];
+                                for (var i = 0; i < object.addresses.length; ++i) {
+                                    if (typeof object.addresses[i] !== "object")
+                                        throw TypeError(".org.dash.platform.dapi.v0.GetAddressBalanceRequest.addresses: object expected");
+                                    message.addresses[i] = $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.fromObject(object.addresses[i]);
                                 }
                             }
                             return message;
@@ -6597,11 +6597,11 @@ $root.org = (function() {
                                 options = {};
                             var object = {};
                             if (options.arrays || options.defaults)
-                                object.items = [];
-                            if (message.items && message.items.length) {
-                                object.items = [];
-                                for (var j = 0; j < message.items.length; ++j)
-                                    object.items[j] = $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.toObject(message.items[j], options);
+                                object.addresses = [];
+                            if (message.addresses && message.addresses.length) {
+                                object.addresses = [];
+                                for (var j = 0; j < message.addresses.length; ++j)
+                                    object.addresses[j] = $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.toObject(message.addresses[j], options);
                             }
                             return object;
                         };
@@ -6623,7 +6623,7 @@ $root.org = (function() {
                              * Properties of an Addresses.
                              * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
                              * @interface IAddresses
-                             * @property {Array.<string>|null} [addresses] Addresses addresses
+                             * @property {Array.<string>|null} [items] Addresses items
                              */
 
                             /**
@@ -6635,7 +6635,7 @@ $root.org = (function() {
                              * @param {org.dash.platform.dapi.v0.GetAddressBalanceRequest.IAddresses=} [properties] Properties to set
                              */
                             function Addresses(properties) {
-                                this.addresses = [];
+                                this.items = [];
                                 if (properties)
                                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                         if (properties[keys[i]] != null)
@@ -6643,12 +6643,12 @@ $root.org = (function() {
                             }
 
                             /**
-                             * Addresses addresses.
-                             * @member {Array.<string>} addresses
+                             * Addresses items.
+                             * @member {Array.<string>} items
                              * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses
                              * @instance
                              */
-                            Addresses.prototype.addresses = $util.emptyArray;
+                            Addresses.prototype.items = $util.emptyArray;
 
                             /**
                              * Creates a new Addresses instance using the specified properties.
@@ -6674,9 +6674,9 @@ $root.org = (function() {
                             Addresses.encode = function encode(message, writer) {
                                 if (!writer)
                                     writer = $Writer.create();
-                                if (message.addresses != null && message.addresses.length)
-                                    for (var i = 0; i < message.addresses.length; ++i)
-                                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.addresses[i]);
+                                if (message.items != null && message.items.length)
+                                    for (var i = 0; i < message.items.length; ++i)
+                                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.items[i]);
                                 return writer;
                             };
 
@@ -6712,9 +6712,9 @@ $root.org = (function() {
                                     var tag = reader.uint32();
                                     switch (tag >>> 3) {
                                     case 1:
-                                        if (!(message.addresses && message.addresses.length))
-                                            message.addresses = [];
-                                        message.addresses.push(reader.string());
+                                        if (!(message.items && message.items.length))
+                                            message.items = [];
+                                        message.items.push(reader.string());
                                         break;
                                     default:
                                         reader.skipType(tag & 7);
@@ -6751,12 +6751,12 @@ $root.org = (function() {
                             Addresses.verify = function verify(message) {
                                 if (typeof message !== "object" || message === null)
                                     return "object expected";
-                                if (message.addresses != null && message.hasOwnProperty("addresses")) {
-                                    if (!Array.isArray(message.addresses))
-                                        return "addresses: array expected";
-                                    for (var i = 0; i < message.addresses.length; ++i)
-                                        if (!$util.isString(message.addresses[i]))
-                                            return "addresses: string[] expected";
+                                if (message.items != null && message.hasOwnProperty("items")) {
+                                    if (!Array.isArray(message.items))
+                                        return "items: array expected";
+                                    for (var i = 0; i < message.items.length; ++i)
+                                        if (!$util.isString(message.items[i]))
+                                            return "items: string[] expected";
                                 }
                                 return null;
                             };
@@ -6773,12 +6773,12 @@ $root.org = (function() {
                                 if (object instanceof $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses)
                                     return object;
                                 var message = new $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses();
-                                if (object.addresses) {
-                                    if (!Array.isArray(object.addresses))
-                                        throw TypeError(".org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.addresses: array expected");
-                                    message.addresses = [];
-                                    for (var i = 0; i < object.addresses.length; ++i)
-                                        message.addresses[i] = String(object.addresses[i]);
+                                if (object.items) {
+                                    if (!Array.isArray(object.items))
+                                        throw TypeError(".org.dash.platform.dapi.v0.GetAddressBalanceRequest.Addresses.items: array expected");
+                                    message.items = [];
+                                    for (var i = 0; i < object.items.length; ++i)
+                                        message.items[i] = String(object.items[i]);
                                 }
                                 return message;
                             };
@@ -6797,11 +6797,11 @@ $root.org = (function() {
                                     options = {};
                                 var object = {};
                                 if (options.arrays || options.defaults)
-                                    object.addresses = [];
-                                if (message.addresses && message.addresses.length) {
-                                    object.addresses = [];
-                                    for (var j = 0; j < message.addresses.length; ++j)
-                                        object.addresses[j] = message.addresses[j];
+                                    object.items = [];
+                                if (message.items && message.items.length) {
+                                    object.items = [];
+                                    for (var j = 0; j < message.items.length; ++j)
+                                        object.items[j] = message.items[j];
                                 }
                                 return object;
                             };

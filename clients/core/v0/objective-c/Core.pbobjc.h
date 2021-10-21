@@ -645,28 +645,28 @@ typedef GPB_ENUM(InstantSendLockMessages_FieldNumber) {
 #pragma mark - GetAddressBalanceRequest
 
 typedef GPB_ENUM(GetAddressBalanceRequest_FieldNumber) {
-  GetAddressBalanceRequest_FieldNumber_ItemsArray = 1,
+  GetAddressBalanceRequest_FieldNumber_AddressesArray = 1,
 };
 
 @interface GetAddressBalanceRequest : GPBMessage
 
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<GetAddressBalanceRequest_Addresses*> *itemsArray;
-/** The number of items in @c itemsArray without causing the array to be created. */
-@property(nonatomic, readonly) NSUInteger itemsArray_Count;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<GetAddressBalanceRequest_Addresses*> *addressesArray;
+/** The number of items in @c addressesArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger addressesArray_Count;
 
 @end
 
 #pragma mark - GetAddressBalanceRequest_Addresses
 
 typedef GPB_ENUM(GetAddressBalanceRequest_Addresses_FieldNumber) {
-  GetAddressBalanceRequest_Addresses_FieldNumber_AddressesArray = 1,
+  GetAddressBalanceRequest_Addresses_FieldNumber_ItemsArray = 1,
 };
 
 @interface GetAddressBalanceRequest_Addresses : GPBMessage
 
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *addressesArray;
-/** The number of items in @c addressesArray without causing the array to be created. */
-@property(nonatomic, readonly) NSUInteger addressesArray_Count;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *itemsArray;
+/** The number of items in @c itemsArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger itemsArray_Count;
 
 @end
 
