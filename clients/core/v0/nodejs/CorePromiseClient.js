@@ -38,7 +38,7 @@ const {
             TransactionsWithProofsRequest: PBJSTransactionsWithProofsRequest,
             TransactionsWithProofsResponse: PBJSTransactionsWithProofsResponse,
             GetAddressBalanceRequest: PBJSGetAddressBalanceRequest,
-            PBJSGetAddressBalanceResponse: PBJSGetAddressBalanceResponse,
+            GetAddressBalanceResponse: PBJSGetAddressBalanceResponse,
           },
         },
       },
@@ -91,6 +91,10 @@ class CorePromiseClient {
 
     this.client.getEstimatedTransactionFee = promisify(
       this.client.getEstimatedTransactionFee.bind(this.client),
+    );
+
+    this.client.getAddressBalance = promisify(
+      this.client.getAddressBalance.bind(this.client),
     );
   }
 
