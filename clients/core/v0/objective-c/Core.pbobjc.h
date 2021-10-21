@@ -30,7 +30,6 @@ CF_EXTERN_C_BEGIN
 @class BlockHeaders;
 @class BloomFilter;
 @class ChainLockSignatureMessages;
-@class GetAddressBalanceRequest_Addresses;
 @class GetStatusResponse_Chain;
 @class GetStatusResponse_Masternode;
 @class GetStatusResponse_Network;
@@ -650,23 +649,9 @@ typedef GPB_ENUM(GetAddressBalanceRequest_FieldNumber) {
 
 @interface GetAddressBalanceRequest : GPBMessage
 
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<GetAddressBalanceRequest_Addresses*> *addressesArray;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *addressesArray;
 /** The number of items in @c addressesArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger addressesArray_Count;
-
-@end
-
-#pragma mark - GetAddressBalanceRequest_Addresses
-
-typedef GPB_ENUM(GetAddressBalanceRequest_Addresses_FieldNumber) {
-  GetAddressBalanceRequest_Addresses_FieldNumber_ItemsArray = 1,
-};
-
-@interface GetAddressBalanceRequest_Addresses : GPBMessage
-
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *itemsArray;
-/** The number of items in @c itemsArray without causing the array to be created. */
-@property(nonatomic, readonly) NSUInteger itemsArray_Count;
 
 @end
 
