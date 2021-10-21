@@ -1751,11 +1751,11 @@ typedef struct InstantSendLockMessages__storage_ {
 
 @implementation GetAddressBalanceRequest
 
-@dynamic addressesArray, addressesArray_Count;
+@dynamic itemsArray, itemsArray_Count;
 
 typedef struct GetAddressBalanceRequest__storage_ {
   uint32_t _has_storage_[1];
-  NSMutableArray *addressesArray;
+  NSMutableArray *itemsArray;
 } GetAddressBalanceRequest__storage_;
 
 // This method is threadsafe because it is initially called
@@ -1765,13 +1765,13 @@ typedef struct GetAddressBalanceRequest__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "addressesArray",
-        .dataTypeSpecific.className = NULL,
-        .number = GetAddressBalanceRequest_FieldNumber_AddressesArray,
+        .name = "itemsArray",
+        .dataTypeSpecific.className = GPBStringifySymbol(GetAddressBalanceRequest_Addresses),
+        .number = GetAddressBalanceRequest_FieldNumber_ItemsArray,
         .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(GetAddressBalanceRequest__storage_, addressesArray),
+        .offset = (uint32_t)offsetof(GetAddressBalanceRequest__storage_, itemsArray),
         .flags = GPBFieldRepeated,
-        .dataType = GPBDataTypeString,
+        .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -1782,6 +1782,50 @@ typedef struct GetAddressBalanceRequest__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(GetAddressBalanceRequest__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - GetAddressBalanceRequest_Addresses
+
+@implementation GetAddressBalanceRequest_Addresses
+
+@dynamic addressesArray, addressesArray_Count;
+
+typedef struct GetAddressBalanceRequest_Addresses__storage_ {
+  uint32_t _has_storage_[1];
+  NSMutableArray *addressesArray;
+} GetAddressBalanceRequest_Addresses__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "addressesArray",
+        .dataTypeSpecific.className = NULL,
+        .number = GetAddressBalanceRequest_Addresses_FieldNumber_AddressesArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(GetAddressBalanceRequest_Addresses__storage_, addressesArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[GetAddressBalanceRequest_Addresses class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(GetAddressBalanceRequest_Addresses__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(GetAddressBalanceRequest)];
     NSAssert(descriptor == nil, @"Startup recursed!");
     descriptor = localDescriptor;
   }

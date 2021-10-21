@@ -189,7 +189,10 @@ message InstantSendLockMessages {
 }
 
 message GetAddressBalanceRequest {
-  repeated string addresses = 1;
+  message Addresses {
+    repeated string addresses = 1;
+  }
+  repeated Addresses items = 1;
 }
 message GetAddressBalanceResponse {
   uint64 balance = 1;
