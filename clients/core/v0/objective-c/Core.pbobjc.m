@@ -1751,11 +1751,11 @@ typedef struct InstantSendLockMessages__storage_ {
 
 @implementation GetAddressBalanceRequest
 
-@dynamic addressesArray, addressesArray_Count;
+@dynamic addresses;
 
 typedef struct GetAddressBalanceRequest__storage_ {
   uint32_t _has_storage_[1];
-  NSMutableArray *addressesArray;
+  NSString *addresses;
 } GetAddressBalanceRequest__storage_;
 
 // This method is threadsafe because it is initially called
@@ -1765,12 +1765,12 @@ typedef struct GetAddressBalanceRequest__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "addressesArray",
+        .name = "addresses",
         .dataTypeSpecific.className = NULL,
-        .number = GetAddressBalanceRequest_FieldNumber_AddressesArray,
-        .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(GetAddressBalanceRequest__storage_, addressesArray),
-        .flags = GPBFieldRepeated,
+        .number = GetAddressBalanceRequest_FieldNumber_Addresses,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(GetAddressBalanceRequest__storage_, addresses),
+        .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
     };
