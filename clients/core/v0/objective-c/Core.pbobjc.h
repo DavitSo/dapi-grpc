@@ -644,12 +644,14 @@ typedef GPB_ENUM(InstantSendLockMessages_FieldNumber) {
 #pragma mark - GetAddressBalanceRequest
 
 typedef GPB_ENUM(GetAddressBalanceRequest_FieldNumber) {
-  GetAddressBalanceRequest_FieldNumber_Addresses = 1,
+  GetAddressBalanceRequest_FieldNumber_AddressesArray = 1,
 };
 
 @interface GetAddressBalanceRequest : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *addresses;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *addressesArray;
+/** The number of items in @c addressesArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger addressesArray_Count;
 
 @end
 
