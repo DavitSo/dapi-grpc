@@ -6418,7 +6418,7 @@ $root.org = (function() {
                          * Properties of a GetAddressBalanceRequest.
                          * @memberof org.dash.platform.dapi.v0
                          * @interface IGetAddressBalanceRequest
-                         * @property {Array.<string>|null} [addresses] GetAddressBalanceRequest addresses
+                         * @property {string|null} [address] GetAddressBalanceRequest address
                          */
 
                         /**
@@ -6430,7 +6430,6 @@ $root.org = (function() {
                          * @param {org.dash.platform.dapi.v0.IGetAddressBalanceRequest=} [properties] Properties to set
                          */
                         function GetAddressBalanceRequest(properties) {
-                            this.addresses = [];
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -6438,12 +6437,12 @@ $root.org = (function() {
                         }
 
                         /**
-                         * GetAddressBalanceRequest addresses.
-                         * @member {Array.<string>} addresses
+                         * GetAddressBalanceRequest address.
+                         * @member {string} address
                          * @memberof org.dash.platform.dapi.v0.GetAddressBalanceRequest
                          * @instance
                          */
-                        GetAddressBalanceRequest.prototype.addresses = $util.emptyArray;
+                        GetAddressBalanceRequest.prototype.address = "";
 
                         /**
                          * Creates a new GetAddressBalanceRequest instance using the specified properties.
@@ -6469,9 +6468,8 @@ $root.org = (function() {
                         GetAddressBalanceRequest.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.addresses != null && message.addresses.length)
-                                for (var i = 0; i < message.addresses.length; ++i)
-                                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.addresses[i]);
+                            if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.address);
                             return writer;
                         };
 
@@ -6507,9 +6505,7 @@ $root.org = (function() {
                                 var tag = reader.uint32();
                                 switch (tag >>> 3) {
                                 case 1:
-                                    if (!(message.addresses && message.addresses.length))
-                                        message.addresses = [];
-                                    message.addresses.push(reader.string());
+                                    message.address = reader.string();
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -6546,13 +6542,9 @@ $root.org = (function() {
                         GetAddressBalanceRequest.verify = function verify(message) {
                             if (typeof message !== "object" || message === null)
                                 return "object expected";
-                            if (message.addresses != null && message.hasOwnProperty("addresses")) {
-                                if (!Array.isArray(message.addresses))
-                                    return "addresses: array expected";
-                                for (var i = 0; i < message.addresses.length; ++i)
-                                    if (!$util.isString(message.addresses[i]))
-                                        return "addresses: string[] expected";
-                            }
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                if (!$util.isString(message.address))
+                                    return "address: string expected";
                             return null;
                         };
 
@@ -6568,13 +6560,8 @@ $root.org = (function() {
                             if (object instanceof $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest)
                                 return object;
                             var message = new $root.org.dash.platform.dapi.v0.GetAddressBalanceRequest();
-                            if (object.addresses) {
-                                if (!Array.isArray(object.addresses))
-                                    throw TypeError(".org.dash.platform.dapi.v0.GetAddressBalanceRequest.addresses: array expected");
-                                message.addresses = [];
-                                for (var i = 0; i < object.addresses.length; ++i)
-                                    message.addresses[i] = String(object.addresses[i]);
-                            }
+                            if (object.address != null)
+                                message.address = String(object.address);
                             return message;
                         };
 
@@ -6591,13 +6578,10 @@ $root.org = (function() {
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.arrays || options.defaults)
-                                object.addresses = [];
-                            if (message.addresses && message.addresses.length) {
-                                object.addresses = [];
-                                for (var j = 0; j < message.addresses.length; ++j)
-                                    object.addresses[j] = message.addresses[j];
-                            }
+                            if (options.defaults)
+                                object.address = "";
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                object.address = message.address;
                             return object;
                         };
 

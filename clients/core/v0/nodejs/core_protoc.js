@@ -585,7 +585,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -6104,13 +6104,6 @@ proto.org.dash.platform.dapi.v0.InstantSendLockMessages.prototype.clearMessagesL
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.repeatedFields_ = [1];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -6142,7 +6135,7 @@ proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.prototype.toObject = fu
  */
 proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    addressesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    address: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -6181,7 +6174,7 @@ proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.deserializeBinaryFromRe
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.addAddresses(value);
+      msg.setAddress(value);
       break;
     default:
       reader.skipField();
@@ -6212,9 +6205,9 @@ proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.prototype.serializeBina
  */
 proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAddressesList();
+  f = message.getAddress();
   if (f.length > 0) {
-    writer.writeRepeatedString(
+    writer.writeString(
       1,
       f
     );
@@ -6223,39 +6216,20 @@ proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.serializeBinaryToWriter
 
 
 /**
- * repeated string addresses = 1;
- * @return {!Array<string>}
+ * optional string address = 1;
+ * @return {string}
  */
-proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.prototype.getAddressesList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest} returns this
- */
-proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.prototype.setAddressesList = function(value) {
-  return jspb.Message.setField(this, 1, value || []);
+proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @param {number=} opt_index
  * @return {!proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest} returns this
  */
-proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.prototype.addAddresses = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest} returns this
- */
-proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.prototype.clearAddressesList = function() {
-  return this.setAddressesList([]);
+proto.org.dash.platform.dapi.v0.GetAddressBalanceRequest.prototype.setAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
