@@ -99,6 +99,10 @@ class CorePromiseClient {
     this.client.getAddressBalance = promisify(
       this.client.getAddressBalance.bind(this.client),
     );
+
+    this.client.getTransactionFee = promisify(
+      this.client.getTransactionFee.bind(this.client),
+    );
   }
 
   /**
@@ -361,7 +365,7 @@ class CorePromiseClient {
    * @param {CallOptions} [options={}]
    * @return {Promise<!GetTransactionFeeResponse>}
    */
-  getTransactionFee(getAddressBalanceRequest, metadata = {}, options = {}) {
+  getTransactionFee(getTransactionFeeRequest, metadata = {}, options = {}) {
     if (!isObject(metadata)) {
       throw new Error('metadata must be an object');
     }
@@ -377,7 +381,7 @@ class CorePromiseClient {
               PBJSGetTransactionFeeResponse,
             ),
             protobufToJsonFactory(
-              PBJSTransactionFeeRequest,
+              PBJSGetTransactionFeeRequest,
             ),
           ),
         ],
