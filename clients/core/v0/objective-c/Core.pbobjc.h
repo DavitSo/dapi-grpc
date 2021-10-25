@@ -668,6 +668,33 @@ typedef GPB_ENUM(GetAddressBalanceResponse_FieldNumber) {
 
 @end
 
+#pragma mark - GetTransactionFeeRequest
+
+typedef GPB_ENUM(GetTransactionFeeRequest_FieldNumber) {
+  GetTransactionFeeRequest_FieldNumber_Address = 1,
+  GetTransactionFeeRequest_FieldNumber_Amount = 2,
+};
+
+@interface GetTransactionFeeRequest : GPBMessage
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+
+@property(nonatomic, readwrite) double amount;
+
+@end
+
+#pragma mark - GetTransactionFeeResponse
+
+typedef GPB_ENUM(GetTransactionFeeResponse_FieldNumber) {
+  GetTransactionFeeResponse_FieldNumber_Fee = 1,
+};
+
+@interface GetTransactionFeeResponse : GPBMessage
+
+@property(nonatomic, readwrite) double fee;
+
+@end
+
 NS_ASSUME_NONNULL_END
 
 CF_EXTERN_C_END

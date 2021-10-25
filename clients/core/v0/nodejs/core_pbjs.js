@@ -350,6 +350,39 @@ $root.org = (function() {
                          * @variation 2
                          */
 
+                        /**
+                         * Callback as used by {@link org.dash.platform.dapi.v0.Core#getTransactionFee}.
+                         * @memberof org.dash.platform.dapi.v0.Core
+                         * @typedef getTransactionFeeCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {org.dash.platform.dapi.v0.GetTransactionFeeResponse} [response] GetTransactionFeeResponse
+                         */
+
+                        /**
+                         * Calls getTransactionFee.
+                         * @function getTransactionFee
+                         * @memberof org.dash.platform.dapi.v0.Core
+                         * @instance
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeRequest} request GetTransactionFeeRequest message or plain object
+                         * @param {org.dash.platform.dapi.v0.Core.getTransactionFeeCallback} callback Node-style callback called with the error, if any, and GetTransactionFeeResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(Core.prototype.getTransactionFee = function getTransactionFee(request, callback) {
+                            return this.rpcCall(getTransactionFee, $root.org.dash.platform.dapi.v0.GetTransactionFeeRequest, $root.org.dash.platform.dapi.v0.GetTransactionFeeResponse, request, callback);
+                        }, "name", { value: "getTransactionFee" });
+
+                        /**
+                         * Calls getTransactionFee.
+                         * @function getTransactionFee
+                         * @memberof org.dash.platform.dapi.v0.Core
+                         * @instance
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeRequest} request GetTransactionFeeRequest message or plain object
+                         * @returns {Promise<org.dash.platform.dapi.v0.GetTransactionFeeResponse>} Promise
+                         * @variation 2
+                         */
+
                         return Core;
                     })();
 
@@ -6835,6 +6868,403 @@ $root.org = (function() {
                         };
 
                         return GetAddressBalanceResponse;
+                    })();
+
+                    v0.GetTransactionFeeRequest = (function() {
+
+                        /**
+                         * Properties of a GetTransactionFeeRequest.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @interface IGetTransactionFeeRequest
+                         * @property {string|null} [address] GetTransactionFeeRequest address
+                         * @property {number|null} [amount] GetTransactionFeeRequest amount
+                         */
+
+                        /**
+                         * Constructs a new GetTransactionFeeRequest.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @classdesc Represents a GetTransactionFeeRequest.
+                         * @implements IGetTransactionFeeRequest
+                         * @constructor
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeRequest=} [properties] Properties to set
+                         */
+                        function GetTransactionFeeRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+
+                        /**
+                         * GetTransactionFeeRequest address.
+                         * @member {string} address
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @instance
+                         */
+                        GetTransactionFeeRequest.prototype.address = "";
+
+                        /**
+                         * GetTransactionFeeRequest amount.
+                         * @member {number} amount
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @instance
+                         */
+                        GetTransactionFeeRequest.prototype.amount = 0;
+
+                        /**
+                         * Creates a new GetTransactionFeeRequest instance using the specified properties.
+                         * @function create
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeRequest=} [properties] Properties to set
+                         * @returns {org.dash.platform.dapi.v0.GetTransactionFeeRequest} GetTransactionFeeRequest instance
+                         */
+                        GetTransactionFeeRequest.create = function create(properties) {
+                            return new GetTransactionFeeRequest(properties);
+                        };
+
+                        /**
+                         * Encodes the specified GetTransactionFeeRequest message. Does not implicitly {@link org.dash.platform.dapi.v0.GetTransactionFeeRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeRequest} message GetTransactionFeeRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetTransactionFeeRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.address);
+                            if (message.amount != null && Object.hasOwnProperty.call(message, "amount"))
+                                writer.uint32(/* id 2, wireType 1 =*/17).double(message.amount);
+                            return writer;
+                        };
+
+                        /**
+                         * Encodes the specified GetTransactionFeeRequest message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.GetTransactionFeeRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeRequest} message GetTransactionFeeRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetTransactionFeeRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+
+                        /**
+                         * Decodes a GetTransactionFeeRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {org.dash.platform.dapi.v0.GetTransactionFeeRequest} GetTransactionFeeRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetTransactionFeeRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.GetTransactionFeeRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.address = reader.string();
+                                    break;
+                                case 2:
+                                    message.amount = reader.double();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Decodes a GetTransactionFeeRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {org.dash.platform.dapi.v0.GetTransactionFeeRequest} GetTransactionFeeRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetTransactionFeeRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+
+                        /**
+                         * Verifies a GetTransactionFeeRequest message.
+                         * @function verify
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetTransactionFeeRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                if (!$util.isString(message.address))
+                                    return "address: string expected";
+                            if (message.amount != null && message.hasOwnProperty("amount"))
+                                if (typeof message.amount !== "number")
+                                    return "amount: number expected";
+                            return null;
+                        };
+
+                        /**
+                         * Creates a GetTransactionFeeRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {org.dash.platform.dapi.v0.GetTransactionFeeRequest} GetTransactionFeeRequest
+                         */
+                        GetTransactionFeeRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.org.dash.platform.dapi.v0.GetTransactionFeeRequest)
+                                return object;
+                            var message = new $root.org.dash.platform.dapi.v0.GetTransactionFeeRequest();
+                            if (object.address != null)
+                                message.address = String(object.address);
+                            if (object.amount != null)
+                                message.amount = Number(object.amount);
+                            return message;
+                        };
+
+                        /**
+                         * Creates a plain object from a GetTransactionFeeRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.GetTransactionFeeRequest} message GetTransactionFeeRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetTransactionFeeRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.address = "";
+                                object.amount = 0;
+                            }
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                object.address = message.address;
+                            if (message.amount != null && message.hasOwnProperty("amount"))
+                                object.amount = options.json && !isFinite(message.amount) ? String(message.amount) : message.amount;
+                            return object;
+                        };
+
+                        /**
+                         * Converts this GetTransactionFeeRequest to JSON.
+                         * @function toJSON
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetTransactionFeeRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+
+                        return GetTransactionFeeRequest;
+                    })();
+
+                    v0.GetTransactionFeeResponse = (function() {
+
+                        /**
+                         * Properties of a GetTransactionFeeResponse.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @interface IGetTransactionFeeResponse
+                         * @property {number|null} [fee] GetTransactionFeeResponse fee
+                         */
+
+                        /**
+                         * Constructs a new GetTransactionFeeResponse.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @classdesc Represents a GetTransactionFeeResponse.
+                         * @implements IGetTransactionFeeResponse
+                         * @constructor
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeResponse=} [properties] Properties to set
+                         */
+                        function GetTransactionFeeResponse(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+
+                        /**
+                         * GetTransactionFeeResponse fee.
+                         * @member {number} fee
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @instance
+                         */
+                        GetTransactionFeeResponse.prototype.fee = 0;
+
+                        /**
+                         * Creates a new GetTransactionFeeResponse instance using the specified properties.
+                         * @function create
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeResponse=} [properties] Properties to set
+                         * @returns {org.dash.platform.dapi.v0.GetTransactionFeeResponse} GetTransactionFeeResponse instance
+                         */
+                        GetTransactionFeeResponse.create = function create(properties) {
+                            return new GetTransactionFeeResponse(properties);
+                        };
+
+                        /**
+                         * Encodes the specified GetTransactionFeeResponse message. Does not implicitly {@link org.dash.platform.dapi.v0.GetTransactionFeeResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeResponse} message GetTransactionFeeResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetTransactionFeeResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.fee != null && Object.hasOwnProperty.call(message, "fee"))
+                                writer.uint32(/* id 1, wireType 1 =*/9).double(message.fee);
+                            return writer;
+                        };
+
+                        /**
+                         * Encodes the specified GetTransactionFeeResponse message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.GetTransactionFeeResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetTransactionFeeResponse} message GetTransactionFeeResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetTransactionFeeResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+
+                        /**
+                         * Decodes a GetTransactionFeeResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {org.dash.platform.dapi.v0.GetTransactionFeeResponse} GetTransactionFeeResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetTransactionFeeResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.GetTransactionFeeResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.fee = reader.double();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Decodes a GetTransactionFeeResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {org.dash.platform.dapi.v0.GetTransactionFeeResponse} GetTransactionFeeResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetTransactionFeeResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+
+                        /**
+                         * Verifies a GetTransactionFeeResponse message.
+                         * @function verify
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetTransactionFeeResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.fee != null && message.hasOwnProperty("fee"))
+                                if (typeof message.fee !== "number")
+                                    return "fee: number expected";
+                            return null;
+                        };
+
+                        /**
+                         * Creates a GetTransactionFeeResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {org.dash.platform.dapi.v0.GetTransactionFeeResponse} GetTransactionFeeResponse
+                         */
+                        GetTransactionFeeResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.org.dash.platform.dapi.v0.GetTransactionFeeResponse)
+                                return object;
+                            var message = new $root.org.dash.platform.dapi.v0.GetTransactionFeeResponse();
+                            if (object.fee != null)
+                                message.fee = Number(object.fee);
+                            return message;
+                        };
+
+                        /**
+                         * Creates a plain object from a GetTransactionFeeResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.GetTransactionFeeResponse} message GetTransactionFeeResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetTransactionFeeResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.fee = 0;
+                            if (message.fee != null && message.hasOwnProperty("fee"))
+                                object.fee = options.json && !isFinite(message.fee) ? String(message.fee) : message.fee;
+                            return object;
+                        };
+
+                        /**
+                         * Converts this GetTransactionFeeResponse to JSON.
+                         * @function toJSON
+                         * @memberof org.dash.platform.dapi.v0.GetTransactionFeeResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetTransactionFeeResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+
+                        return GetTransactionFeeResponse;
                     })();
 
                     return v0;

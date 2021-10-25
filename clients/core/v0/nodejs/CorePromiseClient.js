@@ -39,6 +39,8 @@ const {
             TransactionsWithProofsResponse: PBJSTransactionsWithProofsResponse,
             GetAddressBalanceRequest: PBJSGetAddressBalanceRequest,
             GetAddressBalanceResponse: PBJSGetAddressBalanceResponse,
+            GetTransactionFeeRequest: PBJSGetTransactionFeeRequest,
+            GetTransactionFeeResponse: PBJSGetTransactionFeeResponse,
           },
         },
       },
@@ -55,6 +57,7 @@ const {
   GetEstimatedTransactionFeeResponse: ProtocGetEstimatedTransactionFeeResponse,
   TransactionsWithProofsResponse: ProtocTransactionsWithProofsResponse,
   GetAddressBalanceResponse: ProtocGetAddressBalanceResponse,
+  GetTransactionFeeResponse: ProtocGetTransactionFeeResponse,
 } = require('./core_protoc');
 
 const getCoreDefinition = require('../../../../lib/getCoreDefinition');
@@ -344,6 +347,37 @@ class CorePromiseClient {
             ),
             protobufToJsonFactory(
               PBJSGetAddressBalanceRequest,
+            ),
+          ),
+        ],
+        ...options,
+      },
+    );
+  }
+
+  /**
+   * @param {!GetTransactionFeeRequest} getTransactionFeeRequest
+   * @param {?Object<string, string>} metadata
+   * @param {CallOptions} [options={}]
+   * @return {Promise<!GetTransactionFeeResponse>}
+   */
+  getTransactionFee(getAddressBalanceRequest, metadata = {}, options = {}) {
+    if (!isObject(metadata)) {
+      throw new Error('metadata must be an object');
+    }
+
+    return this.client.getTransactionFee(
+      getTransactionFeeRequest,
+      convertObjectToMetadata(metadata),
+      {
+        interceptors: [
+          jsonToProtobufInterceptorFactory(
+            jsonToProtobufFactory(
+              ProtocGetTransactionFeeResponse,
+              PBJSGetTransactionFeeResponse,
+            ),
+            protobufToJsonFactory(
+              PBJSTransactionFeeRequest,
             ),
           ),
         ],

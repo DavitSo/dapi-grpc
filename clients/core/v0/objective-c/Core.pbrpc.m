@@ -118,4 +118,16 @@
              responseClass:[GetAddressBalanceResponse class]
         responsesWriteable:[GRXWriteable writeableWithSingleHandler:handler]];
 }
+#pragma mark getTransactionFee(GetTransactionFeeRequest) returns (GetTransactionFeeResponse)
+
+- (void)getTransactionFeeWithRequest:(GetTransactionFeeRequest *)request handler:(void(^)(GetTransactionFeeResponse *_Nullable response, NSError *_Nullable error))handler{
+  [[self RPCTogetTransactionFeeWithRequest:request handler:handler] start];
+}
+// Returns a not-yet-started RPC object.
+- (GRPCProtoCall *)RPCTogetTransactionFeeWithRequest:(GetTransactionFeeRequest *)request handler:(void(^)(GetTransactionFeeResponse *_Nullable response, NSError *_Nullable error))handler{
+  return [self RPCToMethod:@"getTransactionFee"
+            requestsWriter:[GRXWriter writerWithValue:request]
+             responseClass:[GetTransactionFeeResponse class]
+        responsesWriteable:[GRXWriteable writeableWithSingleHandler:handler]];
+}
 @end

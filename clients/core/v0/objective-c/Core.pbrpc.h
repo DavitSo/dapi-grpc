@@ -67,6 +67,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (GRPCProtoCall *)RPCTogetAddressBalanceWithRequest:(GetAddressBalanceRequest *)request handler:(void(^)(GetAddressBalanceResponse *_Nullable response, NSError *_Nullable error))handler;
 
 
+#pragma mark getTransactionFee(GetTransactionFeeRequest) returns (GetTransactionFeeResponse)
+
+- (void)getTransactionFeeWithRequest:(GetTransactionFeeRequest *)request handler:(void(^)(GetTransactionFeeResponse *_Nullable response, NSError *_Nullable error))handler;
+
+- (GRPCProtoCall *)RPCTogetTransactionFeeWithRequest:(GetTransactionFeeRequest *)request handler:(void(^)(GetTransactionFeeResponse *_Nullable response, NSError *_Nullable error))handler;
+
+
 @end
 
 /**

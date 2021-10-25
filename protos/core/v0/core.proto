@@ -11,6 +11,7 @@ service Core {
   rpc subscribeToBlockHeadersWithChainLocks (BlockHeadersWithChainLocksRequest) returns (stream BlockHeadersWithChainLocksResponse);
   rpc subscribeToTransactionsWithProofs (TransactionsWithProofsRequest) returns (stream TransactionsWithProofsResponse);
   rpc getAddressBalance (GetAddressBalanceRequest) returns (GetAddressBalanceResponse);
+  rpc getTransactionFee (GetTransactionFeeRequest) returns (GetTransactionFeeResponse);
 }
 
 message GetStatusRequest {
@@ -194,4 +195,12 @@ message GetAddressBalanceRequest {
 message GetAddressBalanceResponse {
   uint64 balance = 1;
   uint64 received = 2;
+}
+
+message GetTransactionFeeRequest {
+  string address = 1;
+  double amount = 2;
+}
+message GetTransactionFeeResponse {
+  double fee = 1;
 }

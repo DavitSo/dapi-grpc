@@ -704,5 +704,85 @@ proto.org.dash.platform.dapi.v0.CorePromiseClient.prototype.getAddressBalance =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.org.dash.platform.dapi.v0.GetTransactionFeeRequest,
+ *   !proto.org.dash.platform.dapi.v0.GetTransactionFeeResponse>}
+ */
+const methodDescriptor_Core_getTransactionFee = new grpc.web.MethodDescriptor(
+  '/org.dash.platform.dapi.v0.Core/getTransactionFee',
+  grpc.web.MethodType.UNARY,
+  proto.org.dash.platform.dapi.v0.GetTransactionFeeRequest,
+  proto.org.dash.platform.dapi.v0.GetTransactionFeeResponse,
+  /**
+   * @param {!proto.org.dash.platform.dapi.v0.GetTransactionFeeRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.org.dash.platform.dapi.v0.GetTransactionFeeResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.org.dash.platform.dapi.v0.GetTransactionFeeRequest,
+ *   !proto.org.dash.platform.dapi.v0.GetTransactionFeeResponse>}
+ */
+const methodInfo_Core_getTransactionFee = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.org.dash.platform.dapi.v0.GetTransactionFeeResponse,
+  /**
+   * @param {!proto.org.dash.platform.dapi.v0.GetTransactionFeeRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.org.dash.platform.dapi.v0.GetTransactionFeeResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.org.dash.platform.dapi.v0.GetTransactionFeeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.org.dash.platform.dapi.v0.GetTransactionFeeResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.org.dash.platform.dapi.v0.GetTransactionFeeResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.org.dash.platform.dapi.v0.CoreClient.prototype.getTransactionFee =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/org.dash.platform.dapi.v0.Core/getTransactionFee',
+      request,
+      metadata || {},
+      methodDescriptor_Core_getTransactionFee,
+      callback);
+};
+
+
+/**
+ * @param {!proto.org.dash.platform.dapi.v0.GetTransactionFeeRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.org.dash.platform.dapi.v0.GetTransactionFeeResponse>}
+ *     Promise that resolves to the response
+ */
+proto.org.dash.platform.dapi.v0.CorePromiseClient.prototype.getTransactionFee =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/org.dash.platform.dapi.v0.Core/getTransactionFee',
+      request,
+      metadata || {},
+      methodDescriptor_Core_getTransactionFee);
+};
+
+
 module.exports = proto.org.dash.platform.dapi.v0;
 
