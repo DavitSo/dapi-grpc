@@ -383,6 +383,39 @@ $root.org = (function() {
                          * @variation 2
                          */
 
+                        /**
+                         * Callback as used by {@link org.dash.platform.dapi.v0.Core#getAddressTransactions}.
+                         * @memberof org.dash.platform.dapi.v0.Core
+                         * @typedef getAddressTransactionsCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {org.dash.platform.dapi.v0.GetAddressTransactionsResponse} [response] GetAddressTransactionsResponse
+                         */
+
+                        /**
+                         * Calls getAddressTransactions.
+                         * @function getAddressTransactions
+                         * @memberof org.dash.platform.dapi.v0.Core
+                         * @instance
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsRequest} request GetAddressTransactionsRequest message or plain object
+                         * @param {org.dash.platform.dapi.v0.Core.getAddressTransactionsCallback} callback Node-style callback called with the error, if any, and GetAddressTransactionsResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(Core.prototype.getAddressTransactions = function getAddressTransactions(request, callback) {
+                            return this.rpcCall(getAddressTransactions, $root.org.dash.platform.dapi.v0.GetAddressTransactionsRequest, $root.org.dash.platform.dapi.v0.GetAddressTransactionsResponse, request, callback);
+                        }, "name", { value: "getAddressTransactions" });
+
+                        /**
+                         * Calls getAddressTransactions.
+                         * @function getAddressTransactions
+                         * @memberof org.dash.platform.dapi.v0.Core
+                         * @instance
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsRequest} request GetAddressTransactionsRequest message or plain object
+                         * @returns {Promise<org.dash.platform.dapi.v0.GetAddressTransactionsResponse>} Promise
+                         * @variation 2
+                         */
+
                         return Core;
                     })();
 
@@ -7265,6 +7298,929 @@ $root.org = (function() {
                         };
 
                         return GetTransactionFeeResponse;
+                    })();
+
+                    v0.GetAddressTransactionsRequest = (function() {
+
+                        /**
+                         * Properties of a GetAddressTransactionsRequest.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @interface IGetAddressTransactionsRequest
+                         * @property {string|null} [address] GetAddressTransactionsRequest address
+                         * @property {number|null} [limit] GetAddressTransactionsRequest limit
+                         * @property {number|null} [pageNumber] GetAddressTransactionsRequest pageNumber
+                         */
+
+                        /**
+                         * Constructs a new GetAddressTransactionsRequest.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @classdesc Represents a GetAddressTransactionsRequest.
+                         * @implements IGetAddressTransactionsRequest
+                         * @constructor
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsRequest=} [properties] Properties to set
+                         */
+                        function GetAddressTransactionsRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+
+                        /**
+                         * GetAddressTransactionsRequest address.
+                         * @member {string} address
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @instance
+                         */
+                        GetAddressTransactionsRequest.prototype.address = "";
+
+                        /**
+                         * GetAddressTransactionsRequest limit.
+                         * @member {number} limit
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @instance
+                         */
+                        GetAddressTransactionsRequest.prototype.limit = 0;
+
+                        /**
+                         * GetAddressTransactionsRequest pageNumber.
+                         * @member {number} pageNumber
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @instance
+                         */
+                        GetAddressTransactionsRequest.prototype.pageNumber = 0;
+
+                        /**
+                         * Creates a new GetAddressTransactionsRequest instance using the specified properties.
+                         * @function create
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsRequest=} [properties] Properties to set
+                         * @returns {org.dash.platform.dapi.v0.GetAddressTransactionsRequest} GetAddressTransactionsRequest instance
+                         */
+                        GetAddressTransactionsRequest.create = function create(properties) {
+                            return new GetAddressTransactionsRequest(properties);
+                        };
+
+                        /**
+                         * Encodes the specified GetAddressTransactionsRequest message. Does not implicitly {@link org.dash.platform.dapi.v0.GetAddressTransactionsRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsRequest} message GetAddressTransactionsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAddressTransactionsRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.address);
+                            if (message.limit != null && Object.hasOwnProperty.call(message, "limit"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.limit);
+                            if (message.pageNumber != null && Object.hasOwnProperty.call(message, "pageNumber"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.pageNumber);
+                            return writer;
+                        };
+
+                        /**
+                         * Encodes the specified GetAddressTransactionsRequest message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.GetAddressTransactionsRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsRequest} message GetAddressTransactionsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAddressTransactionsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+
+                        /**
+                         * Decodes a GetAddressTransactionsRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {org.dash.platform.dapi.v0.GetAddressTransactionsRequest} GetAddressTransactionsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAddressTransactionsRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.GetAddressTransactionsRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.address = reader.string();
+                                    break;
+                                case 2:
+                                    message.limit = reader.uint32();
+                                    break;
+                                case 3:
+                                    message.pageNumber = reader.uint32();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Decodes a GetAddressTransactionsRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {org.dash.platform.dapi.v0.GetAddressTransactionsRequest} GetAddressTransactionsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAddressTransactionsRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+
+                        /**
+                         * Verifies a GetAddressTransactionsRequest message.
+                         * @function verify
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetAddressTransactionsRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                if (!$util.isString(message.address))
+                                    return "address: string expected";
+                            if (message.limit != null && message.hasOwnProperty("limit"))
+                                if (!$util.isInteger(message.limit))
+                                    return "limit: integer expected";
+                            if (message.pageNumber != null && message.hasOwnProperty("pageNumber"))
+                                if (!$util.isInteger(message.pageNumber))
+                                    return "pageNumber: integer expected";
+                            return null;
+                        };
+
+                        /**
+                         * Creates a GetAddressTransactionsRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {org.dash.platform.dapi.v0.GetAddressTransactionsRequest} GetAddressTransactionsRequest
+                         */
+                        GetAddressTransactionsRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.org.dash.platform.dapi.v0.GetAddressTransactionsRequest)
+                                return object;
+                            var message = new $root.org.dash.platform.dapi.v0.GetAddressTransactionsRequest();
+                            if (object.address != null)
+                                message.address = String(object.address);
+                            if (object.limit != null)
+                                message.limit = object.limit >>> 0;
+                            if (object.pageNumber != null)
+                                message.pageNumber = object.pageNumber >>> 0;
+                            return message;
+                        };
+
+                        /**
+                         * Creates a plain object from a GetAddressTransactionsRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.GetAddressTransactionsRequest} message GetAddressTransactionsRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetAddressTransactionsRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.address = "";
+                                object.limit = 0;
+                                object.pageNumber = 0;
+                            }
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                object.address = message.address;
+                            if (message.limit != null && message.hasOwnProperty("limit"))
+                                object.limit = message.limit;
+                            if (message.pageNumber != null && message.hasOwnProperty("pageNumber"))
+                                object.pageNumber = message.pageNumber;
+                            return object;
+                        };
+
+                        /**
+                         * Converts this GetAddressTransactionsRequest to JSON.
+                         * @function toJSON
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetAddressTransactionsRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+
+                        return GetAddressTransactionsRequest;
+                    })();
+
+                    v0.TransactionDetail = (function() {
+
+                        /**
+                         * Properties of a TransactionDetail.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @interface ITransactionDetail
+                         * @property {string|null} [id] TransactionDetail id
+                         * @property {number|null} [amount] TransactionDetail amount
+                         * @property {boolean|null} [isInput] TransactionDetail isInput
+                         * @property {org.dash.platform.dapi.v0.TransactionDetail.ITime|null} [time] TransactionDetail time
+                         */
+
+                        /**
+                         * Constructs a new TransactionDetail.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @classdesc Represents a TransactionDetail.
+                         * @implements ITransactionDetail
+                         * @constructor
+                         * @param {org.dash.platform.dapi.v0.ITransactionDetail=} [properties] Properties to set
+                         */
+                        function TransactionDetail(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+
+                        /**
+                         * TransactionDetail id.
+                         * @member {string} id
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @instance
+                         */
+                        TransactionDetail.prototype.id = "";
+
+                        /**
+                         * TransactionDetail amount.
+                         * @member {number} amount
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @instance
+                         */
+                        TransactionDetail.prototype.amount = 0;
+
+                        /**
+                         * TransactionDetail isInput.
+                         * @member {boolean} isInput
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @instance
+                         */
+                        TransactionDetail.prototype.isInput = false;
+
+                        /**
+                         * TransactionDetail time.
+                         * @member {org.dash.platform.dapi.v0.TransactionDetail.ITime|null|undefined} time
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @instance
+                         */
+                        TransactionDetail.prototype.time = null;
+
+                        /**
+                         * Creates a new TransactionDetail instance using the specified properties.
+                         * @function create
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.ITransactionDetail=} [properties] Properties to set
+                         * @returns {org.dash.platform.dapi.v0.TransactionDetail} TransactionDetail instance
+                         */
+                        TransactionDetail.create = function create(properties) {
+                            return new TransactionDetail(properties);
+                        };
+
+                        /**
+                         * Encodes the specified TransactionDetail message. Does not implicitly {@link org.dash.platform.dapi.v0.TransactionDetail.verify|verify} messages.
+                         * @function encode
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.ITransactionDetail} message TransactionDetail message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        TransactionDetail.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+                            if (message.amount != null && Object.hasOwnProperty.call(message, "amount"))
+                                writer.uint32(/* id 2, wireType 1 =*/17).double(message.amount);
+                            if (message.isInput != null && Object.hasOwnProperty.call(message, "isInput"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isInput);
+                            if (message.time != null && Object.hasOwnProperty.call(message, "time"))
+                                $root.org.dash.platform.dapi.v0.TransactionDetail.Time.encode(message.time, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            return writer;
+                        };
+
+                        /**
+                         * Encodes the specified TransactionDetail message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.TransactionDetail.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.ITransactionDetail} message TransactionDetail message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        TransactionDetail.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+
+                        /**
+                         * Decodes a TransactionDetail message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {org.dash.platform.dapi.v0.TransactionDetail} TransactionDetail
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        TransactionDetail.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.TransactionDetail();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.id = reader.string();
+                                    break;
+                                case 2:
+                                    message.amount = reader.double();
+                                    break;
+                                case 3:
+                                    message.isInput = reader.bool();
+                                    break;
+                                case 4:
+                                    message.time = $root.org.dash.platform.dapi.v0.TransactionDetail.Time.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Decodes a TransactionDetail message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {org.dash.platform.dapi.v0.TransactionDetail} TransactionDetail
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        TransactionDetail.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+
+                        /**
+                         * Verifies a TransactionDetail message.
+                         * @function verify
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        TransactionDetail.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.id != null && message.hasOwnProperty("id"))
+                                if (!$util.isString(message.id))
+                                    return "id: string expected";
+                            if (message.amount != null && message.hasOwnProperty("amount"))
+                                if (typeof message.amount !== "number")
+                                    return "amount: number expected";
+                            if (message.isInput != null && message.hasOwnProperty("isInput"))
+                                if (typeof message.isInput !== "boolean")
+                                    return "isInput: boolean expected";
+                            if (message.time != null && message.hasOwnProperty("time")) {
+                                var error = $root.org.dash.platform.dapi.v0.TransactionDetail.Time.verify(message.time);
+                                if (error)
+                                    return "time." + error;
+                            }
+                            return null;
+                        };
+
+                        /**
+                         * Creates a TransactionDetail message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {org.dash.platform.dapi.v0.TransactionDetail} TransactionDetail
+                         */
+                        TransactionDetail.fromObject = function fromObject(object) {
+                            if (object instanceof $root.org.dash.platform.dapi.v0.TransactionDetail)
+                                return object;
+                            var message = new $root.org.dash.platform.dapi.v0.TransactionDetail();
+                            if (object.id != null)
+                                message.id = String(object.id);
+                            if (object.amount != null)
+                                message.amount = Number(object.amount);
+                            if (object.isInput != null)
+                                message.isInput = Boolean(object.isInput);
+                            if (object.time != null) {
+                                if (typeof object.time !== "object")
+                                    throw TypeError(".org.dash.platform.dapi.v0.TransactionDetail.time: object expected");
+                                message.time = $root.org.dash.platform.dapi.v0.TransactionDetail.Time.fromObject(object.time);
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Creates a plain object from a TransactionDetail message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.TransactionDetail} message TransactionDetail
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        TransactionDetail.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.id = "";
+                                object.amount = 0;
+                                object.isInput = false;
+                                object.time = null;
+                            }
+                            if (message.id != null && message.hasOwnProperty("id"))
+                                object.id = message.id;
+                            if (message.amount != null && message.hasOwnProperty("amount"))
+                                object.amount = options.json && !isFinite(message.amount) ? String(message.amount) : message.amount;
+                            if (message.isInput != null && message.hasOwnProperty("isInput"))
+                                object.isInput = message.isInput;
+                            if (message.time != null && message.hasOwnProperty("time"))
+                                object.time = $root.org.dash.platform.dapi.v0.TransactionDetail.Time.toObject(message.time, options);
+                            return object;
+                        };
+
+                        /**
+                         * Converts this TransactionDetail to JSON.
+                         * @function toJSON
+                         * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        TransactionDetail.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+
+                        TransactionDetail.Time = (function() {
+
+                            /**
+                             * Properties of a Time.
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                             * @interface ITime
+                             * @property {number|Long|null} [seconds] Time seconds
+                             * @property {number|null} [nanos] Time nanos
+                             */
+
+                            /**
+                             * Constructs a new Time.
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail
+                             * @classdesc Represents a Time.
+                             * @implements ITime
+                             * @constructor
+                             * @param {org.dash.platform.dapi.v0.TransactionDetail.ITime=} [properties] Properties to set
+                             */
+                            function Time(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+
+                            /**
+                             * Time seconds.
+                             * @member {number|Long} seconds
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @instance
+                             */
+                            Time.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+                            /**
+                             * Time nanos.
+                             * @member {number} nanos
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @instance
+                             */
+                            Time.prototype.nanos = 0;
+
+                            /**
+                             * Creates a new Time instance using the specified properties.
+                             * @function create
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @static
+                             * @param {org.dash.platform.dapi.v0.TransactionDetail.ITime=} [properties] Properties to set
+                             * @returns {org.dash.platform.dapi.v0.TransactionDetail.Time} Time instance
+                             */
+                            Time.create = function create(properties) {
+                                return new Time(properties);
+                            };
+
+                            /**
+                             * Encodes the specified Time message. Does not implicitly {@link org.dash.platform.dapi.v0.TransactionDetail.Time.verify|verify} messages.
+                             * @function encode
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @static
+                             * @param {org.dash.platform.dapi.v0.TransactionDetail.ITime} message Time message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Time.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
+                                if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
+                                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
+                                return writer;
+                            };
+
+                            /**
+                             * Encodes the specified Time message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.TransactionDetail.Time.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @static
+                             * @param {org.dash.platform.dapi.v0.TransactionDetail.ITime} message Time message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            Time.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+
+                            /**
+                             * Decodes a Time message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {org.dash.platform.dapi.v0.TransactionDetail.Time} Time
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Time.decode = function decode(reader, length) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.TransactionDetail.Time();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    switch (tag >>> 3) {
+                                    case 1:
+                                        message.seconds = reader.int64();
+                                        break;
+                                    case 2:
+                                        message.nanos = reader.int32();
+                                        break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+
+                            /**
+                             * Decodes a Time message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {org.dash.platform.dapi.v0.TransactionDetail.Time} Time
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            Time.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+
+                            /**
+                             * Verifies a Time message.
+                             * @function verify
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            Time.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.seconds != null && message.hasOwnProperty("seconds"))
+                                    if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
+                                        return "seconds: integer|Long expected";
+                                if (message.nanos != null && message.hasOwnProperty("nanos"))
+                                    if (!$util.isInteger(message.nanos))
+                                        return "nanos: integer expected";
+                                return null;
+                            };
+
+                            /**
+                             * Creates a Time message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {org.dash.platform.dapi.v0.TransactionDetail.Time} Time
+                             */
+                            Time.fromObject = function fromObject(object) {
+                                if (object instanceof $root.org.dash.platform.dapi.v0.TransactionDetail.Time)
+                                    return object;
+                                var message = new $root.org.dash.platform.dapi.v0.TransactionDetail.Time();
+                                if (object.seconds != null)
+                                    if ($util.Long)
+                                        (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
+                                    else if (typeof object.seconds === "string")
+                                        message.seconds = parseInt(object.seconds, 10);
+                                    else if (typeof object.seconds === "number")
+                                        message.seconds = object.seconds;
+                                    else if (typeof object.seconds === "object")
+                                        message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
+                                if (object.nanos != null)
+                                    message.nanos = object.nanos | 0;
+                                return message;
+                            };
+
+                            /**
+                             * Creates a plain object from a Time message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @static
+                             * @param {org.dash.platform.dapi.v0.TransactionDetail.Time} message Time
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            Time.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    if ($util.Long) {
+                                        var long = new $util.Long(0, 0, false);
+                                        object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    } else
+                                        object.seconds = options.longs === String ? "0" : 0;
+                                    object.nanos = 0;
+                                }
+                                if (message.seconds != null && message.hasOwnProperty("seconds"))
+                                    if (typeof message.seconds === "number")
+                                        object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
+                                    else
+                                        object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
+                                if (message.nanos != null && message.hasOwnProperty("nanos"))
+                                    object.nanos = message.nanos;
+                                return object;
+                            };
+
+                            /**
+                             * Converts this Time to JSON.
+                             * @function toJSON
+                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            Time.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+
+                            return Time;
+                        })();
+
+                        return TransactionDetail;
+                    })();
+
+                    v0.GetAddressTransactionsResponse = (function() {
+
+                        /**
+                         * Properties of a GetAddressTransactionsResponse.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @interface IGetAddressTransactionsResponse
+                         * @property {Array.<org.dash.platform.dapi.v0.ITransactionDetail>|null} [transactions] GetAddressTransactionsResponse transactions
+                         */
+
+                        /**
+                         * Constructs a new GetAddressTransactionsResponse.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @classdesc Represents a GetAddressTransactionsResponse.
+                         * @implements IGetAddressTransactionsResponse
+                         * @constructor
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsResponse=} [properties] Properties to set
+                         */
+                        function GetAddressTransactionsResponse(properties) {
+                            this.transactions = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+
+                        /**
+                         * GetAddressTransactionsResponse transactions.
+                         * @member {Array.<org.dash.platform.dapi.v0.ITransactionDetail>} transactions
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @instance
+                         */
+                        GetAddressTransactionsResponse.prototype.transactions = $util.emptyArray;
+
+                        /**
+                         * Creates a new GetAddressTransactionsResponse instance using the specified properties.
+                         * @function create
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsResponse=} [properties] Properties to set
+                         * @returns {org.dash.platform.dapi.v0.GetAddressTransactionsResponse} GetAddressTransactionsResponse instance
+                         */
+                        GetAddressTransactionsResponse.create = function create(properties) {
+                            return new GetAddressTransactionsResponse(properties);
+                        };
+
+                        /**
+                         * Encodes the specified GetAddressTransactionsResponse message. Does not implicitly {@link org.dash.platform.dapi.v0.GetAddressTransactionsResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsResponse} message GetAddressTransactionsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAddressTransactionsResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.transactions != null && message.transactions.length)
+                                for (var i = 0; i < message.transactions.length; ++i)
+                                    $root.org.dash.platform.dapi.v0.TransactionDetail.encode(message.transactions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            return writer;
+                        };
+
+                        /**
+                         * Encodes the specified GetAddressTransactionsResponse message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.GetAddressTransactionsResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IGetAddressTransactionsResponse} message GetAddressTransactionsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetAddressTransactionsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+
+                        /**
+                         * Decodes a GetAddressTransactionsResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {org.dash.platform.dapi.v0.GetAddressTransactionsResponse} GetAddressTransactionsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAddressTransactionsResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.GetAddressTransactionsResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    if (!(message.transactions && message.transactions.length))
+                                        message.transactions = [];
+                                    message.transactions.push($root.org.dash.platform.dapi.v0.TransactionDetail.decode(reader, reader.uint32()));
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Decodes a GetAddressTransactionsResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {org.dash.platform.dapi.v0.GetAddressTransactionsResponse} GetAddressTransactionsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetAddressTransactionsResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+
+                        /**
+                         * Verifies a GetAddressTransactionsResponse message.
+                         * @function verify
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetAddressTransactionsResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.transactions != null && message.hasOwnProperty("transactions")) {
+                                if (!Array.isArray(message.transactions))
+                                    return "transactions: array expected";
+                                for (var i = 0; i < message.transactions.length; ++i) {
+                                    var error = $root.org.dash.platform.dapi.v0.TransactionDetail.verify(message.transactions[i]);
+                                    if (error)
+                                        return "transactions." + error;
+                                }
+                            }
+                            return null;
+                        };
+
+                        /**
+                         * Creates a GetAddressTransactionsResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {org.dash.platform.dapi.v0.GetAddressTransactionsResponse} GetAddressTransactionsResponse
+                         */
+                        GetAddressTransactionsResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.org.dash.platform.dapi.v0.GetAddressTransactionsResponse)
+                                return object;
+                            var message = new $root.org.dash.platform.dapi.v0.GetAddressTransactionsResponse();
+                            if (object.transactions) {
+                                if (!Array.isArray(object.transactions))
+                                    throw TypeError(".org.dash.platform.dapi.v0.GetAddressTransactionsResponse.transactions: array expected");
+                                message.transactions = [];
+                                for (var i = 0; i < object.transactions.length; ++i) {
+                                    if (typeof object.transactions[i] !== "object")
+                                        throw TypeError(".org.dash.platform.dapi.v0.GetAddressTransactionsResponse.transactions: object expected");
+                                    message.transactions[i] = $root.org.dash.platform.dapi.v0.TransactionDetail.fromObject(object.transactions[i]);
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Creates a plain object from a GetAddressTransactionsResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.GetAddressTransactionsResponse} message GetAddressTransactionsResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetAddressTransactionsResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.transactions = [];
+                            if (message.transactions && message.transactions.length) {
+                                object.transactions = [];
+                                for (var j = 0; j < message.transactions.length; ++j)
+                                    object.transactions[j] = $root.org.dash.platform.dapi.v0.TransactionDetail.toObject(message.transactions[j], options);
+                            }
+                            return object;
+                        };
+
+                        /**
+                         * Converts this GetAddressTransactionsResponse to JSON.
+                         * @function toJSON
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetAddressTransactionsResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+
+                        return GetAddressTransactionsResponse;
                     })();
 
                     return v0;

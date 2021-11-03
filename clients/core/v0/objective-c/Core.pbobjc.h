@@ -38,6 +38,8 @@ CF_EXTERN_C_BEGIN
 @class GetStatusResponse_Version;
 @class InstantSendLockMessages;
 @class RawTransactions;
+@class TransactionDetail;
+@class TransactionDetail_Time;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -692,6 +694,76 @@ typedef GPB_ENUM(GetTransactionFeeResponse_FieldNumber) {
 @interface GetTransactionFeeResponse : GPBMessage
 
 @property(nonatomic, readwrite) double fee;
+
+@end
+
+#pragma mark - GetAddressTransactionsRequest
+
+typedef GPB_ENUM(GetAddressTransactionsRequest_FieldNumber) {
+  GetAddressTransactionsRequest_FieldNumber_Address = 1,
+  GetAddressTransactionsRequest_FieldNumber_Limit = 2,
+  GetAddressTransactionsRequest_FieldNumber_PageNumber = 3,
+};
+
+@interface GetAddressTransactionsRequest : GPBMessage
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+
+@property(nonatomic, readwrite) uint32_t limit;
+
+@property(nonatomic, readwrite) uint32_t pageNumber;
+
+@end
+
+#pragma mark - TransactionDetail
+
+typedef GPB_ENUM(TransactionDetail_FieldNumber) {
+  TransactionDetail_FieldNumber_Id_p = 1,
+  TransactionDetail_FieldNumber_Amount = 2,
+  TransactionDetail_FieldNumber_IsInput = 3,
+  TransactionDetail_FieldNumber_Time = 4,
+};
+
+@interface TransactionDetail : GPBMessage
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *id_p;
+
+@property(nonatomic, readwrite) double amount;
+
+@property(nonatomic, readwrite) BOOL isInput;
+
+@property(nonatomic, readwrite, strong, null_resettable) TransactionDetail_Time *time;
+/** Test to see if @c time has been set. */
+@property(nonatomic, readwrite) BOOL hasTime;
+
+@end
+
+#pragma mark - TransactionDetail_Time
+
+typedef GPB_ENUM(TransactionDetail_Time_FieldNumber) {
+  TransactionDetail_Time_FieldNumber_Seconds = 1,
+  TransactionDetail_Time_FieldNumber_Nanos = 2,
+};
+
+@interface TransactionDetail_Time : GPBMessage
+
+@property(nonatomic, readwrite) int64_t seconds;
+
+@property(nonatomic, readwrite) int32_t nanos;
+
+@end
+
+#pragma mark - GetAddressTransactionsResponse
+
+typedef GPB_ENUM(GetAddressTransactionsResponse_FieldNumber) {
+  GetAddressTransactionsResponse_FieldNumber_TransactionsArray = 1,
+};
+
+@interface GetAddressTransactionsResponse : GPBMessage
+
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<TransactionDetail*> *transactionsArray;
+/** The number of items in @c transactionsArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger transactionsArray_Count;
 
 @end
 

@@ -12,6 +12,7 @@ service Core {
   rpc subscribeToTransactionsWithProofs (TransactionsWithProofsRequest) returns (stream TransactionsWithProofsResponse);
   rpc getAddressBalance (GetAddressBalanceRequest) returns (GetAddressBalanceResponse);
   rpc getTransactionFee (GetTransactionFeeRequest) returns (GetTransactionFeeResponse);
+  rpc getAddressTransactions (GetAddressTransactionsRequest) returns (GetAddressTransactionsResponse);
 }
 
 message GetStatusRequest {
@@ -203,4 +204,23 @@ message GetTransactionFeeRequest {
 }
 message GetTransactionFeeResponse {
   double fee = 1;
+}
+
+message GetAddressTransactionsRequest {
+  string address = 1;
+  uint32 limit = 2;
+  uint32 page_number = 3;
+}
+message TransactionDetail {
+  message Time {
+    int64 seconds = 1;
+    int32 nanos = 2;
+  }
+  string id = 1;
+  double amount = 2;
+  bool is_input = 3;
+  Time time = 4;
+}
+message GetAddressTransactionsResponse {
+  repeated TransactionDetail transactions = 1;
 }

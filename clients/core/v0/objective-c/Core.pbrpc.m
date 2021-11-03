@@ -130,4 +130,16 @@
              responseClass:[GetTransactionFeeResponse class]
         responsesWriteable:[GRXWriteable writeableWithSingleHandler:handler]];
 }
+#pragma mark getAddressTransactions(GetAddressTransactionsRequest) returns (GetAddressTransactionsResponse)
+
+- (void)getAddressTransactionsWithRequest:(GetAddressTransactionsRequest *)request handler:(void(^)(GetAddressTransactionsResponse *_Nullable response, NSError *_Nullable error))handler{
+  [[self RPCTogetAddressTransactionsWithRequest:request handler:handler] start];
+}
+// Returns a not-yet-started RPC object.
+- (GRPCProtoCall *)RPCTogetAddressTransactionsWithRequest:(GetAddressTransactionsRequest *)request handler:(void(^)(GetAddressTransactionsResponse *_Nullable response, NSError *_Nullable error))handler{
+  return [self RPCToMethod:@"getAddressTransactions"
+            requestsWriter:[GRXWriter writerWithValue:request]
+             responseClass:[GetAddressTransactionsResponse class]
+        responsesWriteable:[GRXWriteable writeableWithSingleHandler:handler]];
+}
 @end

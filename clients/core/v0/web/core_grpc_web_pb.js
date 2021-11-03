@@ -784,5 +784,85 @@ proto.org.dash.platform.dapi.v0.CorePromiseClient.prototype.getTransactionFee =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.org.dash.platform.dapi.v0.GetAddressTransactionsRequest,
+ *   !proto.org.dash.platform.dapi.v0.GetAddressTransactionsResponse>}
+ */
+const methodDescriptor_Core_getAddressTransactions = new grpc.web.MethodDescriptor(
+  '/org.dash.platform.dapi.v0.Core/getAddressTransactions',
+  grpc.web.MethodType.UNARY,
+  proto.org.dash.platform.dapi.v0.GetAddressTransactionsRequest,
+  proto.org.dash.platform.dapi.v0.GetAddressTransactionsResponse,
+  /**
+   * @param {!proto.org.dash.platform.dapi.v0.GetAddressTransactionsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.org.dash.platform.dapi.v0.GetAddressTransactionsResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.org.dash.platform.dapi.v0.GetAddressTransactionsRequest,
+ *   !proto.org.dash.platform.dapi.v0.GetAddressTransactionsResponse>}
+ */
+const methodInfo_Core_getAddressTransactions = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.org.dash.platform.dapi.v0.GetAddressTransactionsResponse,
+  /**
+   * @param {!proto.org.dash.platform.dapi.v0.GetAddressTransactionsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.org.dash.platform.dapi.v0.GetAddressTransactionsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.org.dash.platform.dapi.v0.GetAddressTransactionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.org.dash.platform.dapi.v0.GetAddressTransactionsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.org.dash.platform.dapi.v0.GetAddressTransactionsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.org.dash.platform.dapi.v0.CoreClient.prototype.getAddressTransactions =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/org.dash.platform.dapi.v0.Core/getAddressTransactions',
+      request,
+      metadata || {},
+      methodDescriptor_Core_getAddressTransactions,
+      callback);
+};
+
+
+/**
+ * @param {!proto.org.dash.platform.dapi.v0.GetAddressTransactionsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.org.dash.platform.dapi.v0.GetAddressTransactionsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.org.dash.platform.dapi.v0.CorePromiseClient.prototype.getAddressTransactions =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/org.dash.platform.dapi.v0.Core/getAddressTransactions',
+      request,
+      metadata || {},
+      methodDescriptor_Core_getAddressTransactions);
+};
+
+
 module.exports = proto.org.dash.platform.dapi.v0;
 

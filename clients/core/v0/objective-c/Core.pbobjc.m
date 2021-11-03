@@ -1941,6 +1941,244 @@ typedef struct GetTransactionFeeResponse__storage_ {
 
 @end
 
+#pragma mark - GetAddressTransactionsRequest
+
+@implementation GetAddressTransactionsRequest
+
+@dynamic address;
+@dynamic limit;
+@dynamic pageNumber;
+
+typedef struct GetAddressTransactionsRequest__storage_ {
+  uint32_t _has_storage_[1];
+  uint32_t limit;
+  uint32_t pageNumber;
+  NSString *address;
+} GetAddressTransactionsRequest__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "address",
+        .dataTypeSpecific.className = NULL,
+        .number = GetAddressTransactionsRequest_FieldNumber_Address,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(GetAddressTransactionsRequest__storage_, address),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "limit",
+        .dataTypeSpecific.className = NULL,
+        .number = GetAddressTransactionsRequest_FieldNumber_Limit,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(GetAddressTransactionsRequest__storage_, limit),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt32,
+      },
+      {
+        .name = "pageNumber",
+        .dataTypeSpecific.className = NULL,
+        .number = GetAddressTransactionsRequest_FieldNumber_PageNumber,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(GetAddressTransactionsRequest__storage_, pageNumber),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt32,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[GetAddressTransactionsRequest class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(GetAddressTransactionsRequest__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - TransactionDetail
+
+@implementation TransactionDetail
+
+@dynamic id_p;
+@dynamic amount;
+@dynamic isInput;
+@dynamic hasTime, time;
+
+typedef struct TransactionDetail__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *id_p;
+  TransactionDetail_Time *time;
+  double amount;
+} TransactionDetail__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "id_p",
+        .dataTypeSpecific.className = NULL,
+        .number = TransactionDetail_FieldNumber_Id_p,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(TransactionDetail__storage_, id_p),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "amount",
+        .dataTypeSpecific.className = NULL,
+        .number = TransactionDetail_FieldNumber_Amount,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(TransactionDetail__storage_, amount),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeDouble,
+      },
+      {
+        .name = "isInput",
+        .dataTypeSpecific.className = NULL,
+        .number = TransactionDetail_FieldNumber_IsInput,
+        .hasIndex = 2,
+        .offset = 3,  // Stored in _has_storage_ to save space.
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeBool,
+      },
+      {
+        .name = "time",
+        .dataTypeSpecific.className = GPBStringifySymbol(TransactionDetail_Time),
+        .number = TransactionDetail_FieldNumber_Time,
+        .hasIndex = 4,
+        .offset = (uint32_t)offsetof(TransactionDetail__storage_, time),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[TransactionDetail class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(TransactionDetail__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - TransactionDetail_Time
+
+@implementation TransactionDetail_Time
+
+@dynamic seconds;
+@dynamic nanos;
+
+typedef struct TransactionDetail_Time__storage_ {
+  uint32_t _has_storage_[1];
+  int32_t nanos;
+  int64_t seconds;
+} TransactionDetail_Time__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "seconds",
+        .dataTypeSpecific.className = NULL,
+        .number = TransactionDetail_Time_FieldNumber_Seconds,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(TransactionDetail_Time__storage_, seconds),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeInt64,
+      },
+      {
+        .name = "nanos",
+        .dataTypeSpecific.className = NULL,
+        .number = TransactionDetail_Time_FieldNumber_Nanos,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(TransactionDetail_Time__storage_, nanos),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeInt32,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[TransactionDetail_Time class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(TransactionDetail_Time__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(TransactionDetail)];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - GetAddressTransactionsResponse
+
+@implementation GetAddressTransactionsResponse
+
+@dynamic transactionsArray, transactionsArray_Count;
+
+typedef struct GetAddressTransactionsResponse__storage_ {
+  uint32_t _has_storage_[1];
+  NSMutableArray *transactionsArray;
+} GetAddressTransactionsResponse__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "transactionsArray",
+        .dataTypeSpecific.className = GPBStringifySymbol(TransactionDetail),
+        .number = GetAddressTransactionsResponse_FieldNumber_TransactionsArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(GetAddressTransactionsResponse__storage_, transactionsArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeMessage,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[GetAddressTransactionsResponse class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(GetAddressTransactionsResponse__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
 
 #pragma clang diagnostic pop
 
