@@ -106,6 +106,10 @@ class CorePromiseClient {
     this.client.getTransactionFee = promisify(
       this.client.getTransactionFee.bind(this.client),
     );
+
+    this.client.getAddressTransactions = promisify(
+      this.client.getAddressTransactions.bind(this.client),
+    );
   }
 
   /**
