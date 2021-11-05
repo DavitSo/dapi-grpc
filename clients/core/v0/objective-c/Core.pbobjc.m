@@ -1946,13 +1946,13 @@ typedef struct GetTransactionFeeResponse__storage_ {
 @implementation GetAddressTransactionsRequest
 
 @dynamic address;
+@dynamic offset;
 @dynamic limit;
-@dynamic pageNumber;
 
 typedef struct GetAddressTransactionsRequest__storage_ {
   uint32_t _has_storage_[1];
+  uint32_t offset;
   uint32_t limit;
-  uint32_t pageNumber;
   NSString *address;
 } GetAddressTransactionsRequest__storage_;
 
@@ -1972,20 +1972,20 @@ typedef struct GetAddressTransactionsRequest__storage_ {
         .dataType = GPBDataTypeString,
       },
       {
-        .name = "limit",
+        .name = "offset",
         .dataTypeSpecific.className = NULL,
-        .number = GetAddressTransactionsRequest_FieldNumber_Limit,
+        .number = GetAddressTransactionsRequest_FieldNumber_Offset,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(GetAddressTransactionsRequest__storage_, limit),
+        .offset = (uint32_t)offsetof(GetAddressTransactionsRequest__storage_, offset),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeUInt32,
       },
       {
-        .name = "pageNumber",
+        .name = "limit",
         .dataTypeSpecific.className = NULL,
-        .number = GetAddressTransactionsRequest_FieldNumber_PageNumber,
+        .number = GetAddressTransactionsRequest_FieldNumber_Limit,
         .hasIndex = 2,
-        .offset = (uint32_t)offsetof(GetAddressTransactionsRequest__storage_, pageNumber),
+        .offset = (uint32_t)offsetof(GetAddressTransactionsRequest__storage_, limit),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeUInt32,
       },
@@ -2013,12 +2013,12 @@ typedef struct GetAddressTransactionsRequest__storage_ {
 @dynamic id_p;
 @dynamic amount;
 @dynamic isInput;
-@dynamic hasTime, time;
+@dynamic timeUtc;
 
 typedef struct TransactionDetail__storage_ {
   uint32_t _has_storage_[1];
   NSString *id_p;
-  TransactionDetail_Time *time;
+  NSString *timeUtc;
   double amount;
 } TransactionDetail__storage_;
 
@@ -2056,13 +2056,13 @@ typedef struct TransactionDetail__storage_ {
         .dataType = GPBDataTypeBool,
       },
       {
-        .name = "time",
-        .dataTypeSpecific.className = GPBStringifySymbol(TransactionDetail_Time),
-        .number = TransactionDetail_FieldNumber_Time,
+        .name = "timeUtc",
+        .dataTypeSpecific.className = NULL,
+        .number = TransactionDetail_FieldNumber_TimeUtc,
         .hasIndex = 4,
-        .offset = (uint32_t)offsetof(TransactionDetail__storage_, time),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeMessage,
+        .offset = (uint32_t)offsetof(TransactionDetail__storage_, timeUtc),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -2073,61 +2073,11 @@ typedef struct TransactionDetail__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(TransactionDetail__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
-    descriptor = localDescriptor;
-  }
-  return descriptor;
-}
-
-@end
-
-#pragma mark - TransactionDetail_Time
-
-@implementation TransactionDetail_Time
-
-@dynamic seconds;
-@dynamic nanos;
-
-typedef struct TransactionDetail_Time__storage_ {
-  uint32_t _has_storage_[1];
-  int32_t nanos;
-  int64_t seconds;
-} TransactionDetail_Time__storage_;
-
-// This method is threadsafe because it is initially called
-// in +initialize for each subclass.
-+ (GPBDescriptor *)descriptor {
-  static GPBDescriptor *descriptor = nil;
-  if (!descriptor) {
-    static GPBMessageFieldDescription fields[] = {
-      {
-        .name = "seconds",
-        .dataTypeSpecific.className = NULL,
-        .number = TransactionDetail_Time_FieldNumber_Seconds,
-        .hasIndex = 0,
-        .offset = (uint32_t)offsetof(TransactionDetail_Time__storage_, seconds),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt64,
-      },
-      {
-        .name = "nanos",
-        .dataTypeSpecific.className = NULL,
-        .number = TransactionDetail_Time_FieldNumber_Nanos,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(TransactionDetail_Time__storage_, nanos),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt32,
-      },
-    };
-    GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[TransactionDetail_Time class]
-                                     rootClass:[CoreRoot class]
-                                          file:CoreRoot_FileDescriptor()
-                                        fields:fields
-                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(TransactionDetail_Time__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
-    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(TransactionDetail)];
+#if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    static const char *extraTextFormatInfo =
+        "\001\004\007\000";
+    [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
+#endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
     descriptor = localDescriptor;
   }

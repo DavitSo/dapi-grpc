@@ -7307,8 +7307,8 @@ $root.org = (function() {
                          * @memberof org.dash.platform.dapi.v0
                          * @interface IGetAddressTransactionsRequest
                          * @property {string|null} [address] GetAddressTransactionsRequest address
+                         * @property {number|null} [offset] GetAddressTransactionsRequest offset
                          * @property {number|null} [limit] GetAddressTransactionsRequest limit
-                         * @property {number|null} [pageNumber] GetAddressTransactionsRequest pageNumber
                          */
 
                         /**
@@ -7335,20 +7335,20 @@ $root.org = (function() {
                         GetAddressTransactionsRequest.prototype.address = "";
 
                         /**
+                         * GetAddressTransactionsRequest offset.
+                         * @member {number} offset
+                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
+                         * @instance
+                         */
+                        GetAddressTransactionsRequest.prototype.offset = 0;
+
+                        /**
                          * GetAddressTransactionsRequest limit.
                          * @member {number} limit
                          * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
                          * @instance
                          */
                         GetAddressTransactionsRequest.prototype.limit = 0;
-
-                        /**
-                         * GetAddressTransactionsRequest pageNumber.
-                         * @member {number} pageNumber
-                         * @memberof org.dash.platform.dapi.v0.GetAddressTransactionsRequest
-                         * @instance
-                         */
-                        GetAddressTransactionsRequest.prototype.pageNumber = 0;
 
                         /**
                          * Creates a new GetAddressTransactionsRequest instance using the specified properties.
@@ -7376,10 +7376,10 @@ $root.org = (function() {
                                 writer = $Writer.create();
                             if (message.address != null && Object.hasOwnProperty.call(message, "address"))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.address);
+                            if (message.offset != null && Object.hasOwnProperty.call(message, "offset"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.offset);
                             if (message.limit != null && Object.hasOwnProperty.call(message, "limit"))
-                                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.limit);
-                            if (message.pageNumber != null && Object.hasOwnProperty.call(message, "pageNumber"))
-                                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.pageNumber);
+                                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.limit);
                             return writer;
                         };
 
@@ -7418,10 +7418,10 @@ $root.org = (function() {
                                     message.address = reader.string();
                                     break;
                                 case 2:
-                                    message.limit = reader.uint32();
+                                    message.offset = reader.uint32();
                                     break;
                                 case 3:
-                                    message.pageNumber = reader.uint32();
+                                    message.limit = reader.uint32();
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -7461,12 +7461,12 @@ $root.org = (function() {
                             if (message.address != null && message.hasOwnProperty("address"))
                                 if (!$util.isString(message.address))
                                     return "address: string expected";
+                            if (message.offset != null && message.hasOwnProperty("offset"))
+                                if (!$util.isInteger(message.offset))
+                                    return "offset: integer expected";
                             if (message.limit != null && message.hasOwnProperty("limit"))
                                 if (!$util.isInteger(message.limit))
                                     return "limit: integer expected";
-                            if (message.pageNumber != null && message.hasOwnProperty("pageNumber"))
-                                if (!$util.isInteger(message.pageNumber))
-                                    return "pageNumber: integer expected";
                             return null;
                         };
 
@@ -7484,10 +7484,10 @@ $root.org = (function() {
                             var message = new $root.org.dash.platform.dapi.v0.GetAddressTransactionsRequest();
                             if (object.address != null)
                                 message.address = String(object.address);
+                            if (object.offset != null)
+                                message.offset = object.offset >>> 0;
                             if (object.limit != null)
                                 message.limit = object.limit >>> 0;
-                            if (object.pageNumber != null)
-                                message.pageNumber = object.pageNumber >>> 0;
                             return message;
                         };
 
@@ -7506,15 +7506,15 @@ $root.org = (function() {
                             var object = {};
                             if (options.defaults) {
                                 object.address = "";
+                                object.offset = 0;
                                 object.limit = 0;
-                                object.pageNumber = 0;
                             }
                             if (message.address != null && message.hasOwnProperty("address"))
                                 object.address = message.address;
+                            if (message.offset != null && message.hasOwnProperty("offset"))
+                                object.offset = message.offset;
                             if (message.limit != null && message.hasOwnProperty("limit"))
                                 object.limit = message.limit;
-                            if (message.pageNumber != null && message.hasOwnProperty("pageNumber"))
-                                object.pageNumber = message.pageNumber;
                             return object;
                         };
 
@@ -7541,7 +7541,7 @@ $root.org = (function() {
                          * @property {string|null} [id] TransactionDetail id
                          * @property {number|null} [amount] TransactionDetail amount
                          * @property {boolean|null} [isInput] TransactionDetail isInput
-                         * @property {org.dash.platform.dapi.v0.TransactionDetail.ITime|null} [time] TransactionDetail time
+                         * @property {string|null} [timeUtc] TransactionDetail timeUtc
                          */
 
                         /**
@@ -7584,12 +7584,12 @@ $root.org = (function() {
                         TransactionDetail.prototype.isInput = false;
 
                         /**
-                         * TransactionDetail time.
-                         * @member {org.dash.platform.dapi.v0.TransactionDetail.ITime|null|undefined} time
+                         * TransactionDetail timeUtc.
+                         * @member {string} timeUtc
                          * @memberof org.dash.platform.dapi.v0.TransactionDetail
                          * @instance
                          */
-                        TransactionDetail.prototype.time = null;
+                        TransactionDetail.prototype.timeUtc = "";
 
                         /**
                          * Creates a new TransactionDetail instance using the specified properties.
@@ -7621,8 +7621,8 @@ $root.org = (function() {
                                 writer.uint32(/* id 2, wireType 1 =*/17).double(message.amount);
                             if (message.isInput != null && Object.hasOwnProperty.call(message, "isInput"))
                                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isInput);
-                            if (message.time != null && Object.hasOwnProperty.call(message, "time"))
-                                $root.org.dash.platform.dapi.v0.TransactionDetail.Time.encode(message.time, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            if (message.timeUtc != null && Object.hasOwnProperty.call(message, "timeUtc"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.timeUtc);
                             return writer;
                         };
 
@@ -7667,7 +7667,7 @@ $root.org = (function() {
                                     message.isInput = reader.bool();
                                     break;
                                 case 4:
-                                    message.time = $root.org.dash.platform.dapi.v0.TransactionDetail.Time.decode(reader, reader.uint32());
+                                    message.timeUtc = reader.string();
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -7713,11 +7713,9 @@ $root.org = (function() {
                             if (message.isInput != null && message.hasOwnProperty("isInput"))
                                 if (typeof message.isInput !== "boolean")
                                     return "isInput: boolean expected";
-                            if (message.time != null && message.hasOwnProperty("time")) {
-                                var error = $root.org.dash.platform.dapi.v0.TransactionDetail.Time.verify(message.time);
-                                if (error)
-                                    return "time." + error;
-                            }
+                            if (message.timeUtc != null && message.hasOwnProperty("timeUtc"))
+                                if (!$util.isString(message.timeUtc))
+                                    return "timeUtc: string expected";
                             return null;
                         };
 
@@ -7739,11 +7737,8 @@ $root.org = (function() {
                                 message.amount = Number(object.amount);
                             if (object.isInput != null)
                                 message.isInput = Boolean(object.isInput);
-                            if (object.time != null) {
-                                if (typeof object.time !== "object")
-                                    throw TypeError(".org.dash.platform.dapi.v0.TransactionDetail.time: object expected");
-                                message.time = $root.org.dash.platform.dapi.v0.TransactionDetail.Time.fromObject(object.time);
-                            }
+                            if (object.timeUtc != null)
+                                message.timeUtc = String(object.timeUtc);
                             return message;
                         };
 
@@ -7764,7 +7759,7 @@ $root.org = (function() {
                                 object.id = "";
                                 object.amount = 0;
                                 object.isInput = false;
-                                object.time = null;
+                                object.timeUtc = "";
                             }
                             if (message.id != null && message.hasOwnProperty("id"))
                                 object.id = message.id;
@@ -7772,8 +7767,8 @@ $root.org = (function() {
                                 object.amount = options.json && !isFinite(message.amount) ? String(message.amount) : message.amount;
                             if (message.isInput != null && message.hasOwnProperty("isInput"))
                                 object.isInput = message.isInput;
-                            if (message.time != null && message.hasOwnProperty("time"))
-                                object.time = $root.org.dash.platform.dapi.v0.TransactionDetail.Time.toObject(message.time, options);
+                            if (message.timeUtc != null && message.hasOwnProperty("timeUtc"))
+                                object.timeUtc = message.timeUtc;
                             return object;
                         };
 
@@ -7787,230 +7782,6 @@ $root.org = (function() {
                         TransactionDetail.prototype.toJSON = function toJSON() {
                             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
                         };
-
-                        TransactionDetail.Time = (function() {
-
-                            /**
-                             * Properties of a Time.
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail
-                             * @interface ITime
-                             * @property {number|Long|null} [seconds] Time seconds
-                             * @property {number|null} [nanos] Time nanos
-                             */
-
-                            /**
-                             * Constructs a new Time.
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail
-                             * @classdesc Represents a Time.
-                             * @implements ITime
-                             * @constructor
-                             * @param {org.dash.platform.dapi.v0.TransactionDetail.ITime=} [properties] Properties to set
-                             */
-                            function Time(properties) {
-                                if (properties)
-                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                        if (properties[keys[i]] != null)
-                                            this[keys[i]] = properties[keys[i]];
-                            }
-
-                            /**
-                             * Time seconds.
-                             * @member {number|Long} seconds
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @instance
-                             */
-                            Time.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                            /**
-                             * Time nanos.
-                             * @member {number} nanos
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @instance
-                             */
-                            Time.prototype.nanos = 0;
-
-                            /**
-                             * Creates a new Time instance using the specified properties.
-                             * @function create
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @static
-                             * @param {org.dash.platform.dapi.v0.TransactionDetail.ITime=} [properties] Properties to set
-                             * @returns {org.dash.platform.dapi.v0.TransactionDetail.Time} Time instance
-                             */
-                            Time.create = function create(properties) {
-                                return new Time(properties);
-                            };
-
-                            /**
-                             * Encodes the specified Time message. Does not implicitly {@link org.dash.platform.dapi.v0.TransactionDetail.Time.verify|verify} messages.
-                             * @function encode
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @static
-                             * @param {org.dash.platform.dapi.v0.TransactionDetail.ITime} message Time message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            Time.encode = function encode(message, writer) {
-                                if (!writer)
-                                    writer = $Writer.create();
-                                if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
-                                    writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
-                                if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
-                                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
-                                return writer;
-                            };
-
-                            /**
-                             * Encodes the specified Time message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.TransactionDetail.Time.verify|verify} messages.
-                             * @function encodeDelimited
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @static
-                             * @param {org.dash.platform.dapi.v0.TransactionDetail.ITime} message Time message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            Time.encodeDelimited = function encodeDelimited(message, writer) {
-                                return this.encode(message, writer).ldelim();
-                            };
-
-                            /**
-                             * Decodes a Time message from the specified reader or buffer.
-                             * @function decode
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @param {number} [length] Message length if known beforehand
-                             * @returns {org.dash.platform.dapi.v0.TransactionDetail.Time} Time
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            Time.decode = function decode(reader, length) {
-                                if (!(reader instanceof $Reader))
-                                    reader = $Reader.create(reader);
-                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.TransactionDetail.Time();
-                                while (reader.pos < end) {
-                                    var tag = reader.uint32();
-                                    switch (tag >>> 3) {
-                                    case 1:
-                                        message.seconds = reader.int64();
-                                        break;
-                                    case 2:
-                                        message.nanos = reader.int32();
-                                        break;
-                                    default:
-                                        reader.skipType(tag & 7);
-                                        break;
-                                    }
-                                }
-                                return message;
-                            };
-
-                            /**
-                             * Decodes a Time message from the specified reader or buffer, length delimited.
-                             * @function decodeDelimited
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @returns {org.dash.platform.dapi.v0.TransactionDetail.Time} Time
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            Time.decodeDelimited = function decodeDelimited(reader) {
-                                if (!(reader instanceof $Reader))
-                                    reader = new $Reader(reader);
-                                return this.decode(reader, reader.uint32());
-                            };
-
-                            /**
-                             * Verifies a Time message.
-                             * @function verify
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @static
-                             * @param {Object.<string,*>} message Plain object to verify
-                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                             */
-                            Time.verify = function verify(message) {
-                                if (typeof message !== "object" || message === null)
-                                    return "object expected";
-                                if (message.seconds != null && message.hasOwnProperty("seconds"))
-                                    if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
-                                        return "seconds: integer|Long expected";
-                                if (message.nanos != null && message.hasOwnProperty("nanos"))
-                                    if (!$util.isInteger(message.nanos))
-                                        return "nanos: integer expected";
-                                return null;
-                            };
-
-                            /**
-                             * Creates a Time message from a plain object. Also converts values to their respective internal types.
-                             * @function fromObject
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @static
-                             * @param {Object.<string,*>} object Plain object
-                             * @returns {org.dash.platform.dapi.v0.TransactionDetail.Time} Time
-                             */
-                            Time.fromObject = function fromObject(object) {
-                                if (object instanceof $root.org.dash.platform.dapi.v0.TransactionDetail.Time)
-                                    return object;
-                                var message = new $root.org.dash.platform.dapi.v0.TransactionDetail.Time();
-                                if (object.seconds != null)
-                                    if ($util.Long)
-                                        (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
-                                    else if (typeof object.seconds === "string")
-                                        message.seconds = parseInt(object.seconds, 10);
-                                    else if (typeof object.seconds === "number")
-                                        message.seconds = object.seconds;
-                                    else if (typeof object.seconds === "object")
-                                        message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
-                                if (object.nanos != null)
-                                    message.nanos = object.nanos | 0;
-                                return message;
-                            };
-
-                            /**
-                             * Creates a plain object from a Time message. Also converts values to other types if specified.
-                             * @function toObject
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @static
-                             * @param {org.dash.platform.dapi.v0.TransactionDetail.Time} message Time
-                             * @param {$protobuf.IConversionOptions} [options] Conversion options
-                             * @returns {Object.<string,*>} Plain object
-                             */
-                            Time.toObject = function toObject(message, options) {
-                                if (!options)
-                                    options = {};
-                                var object = {};
-                                if (options.defaults) {
-                                    if ($util.Long) {
-                                        var long = new $util.Long(0, 0, false);
-                                        object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                                    } else
-                                        object.seconds = options.longs === String ? "0" : 0;
-                                    object.nanos = 0;
-                                }
-                                if (message.seconds != null && message.hasOwnProperty("seconds"))
-                                    if (typeof message.seconds === "number")
-                                        object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
-                                    else
-                                        object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
-                                if (message.nanos != null && message.hasOwnProperty("nanos"))
-                                    object.nanos = message.nanos;
-                                return object;
-                            };
-
-                            /**
-                             * Converts this Time to JSON.
-                             * @function toJSON
-                             * @memberof org.dash.platform.dapi.v0.TransactionDetail.Time
-                             * @instance
-                             * @returns {Object.<string,*>} JSON object
-                             */
-                            Time.prototype.toJSON = function toJSON() {
-                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                            };
-
-                            return Time;
-                        })();
 
                         return TransactionDetail;
                     })();

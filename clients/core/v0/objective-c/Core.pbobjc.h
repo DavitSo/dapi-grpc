@@ -39,7 +39,6 @@ CF_EXTERN_C_BEGIN
 @class InstantSendLockMessages;
 @class RawTransactions;
 @class TransactionDetail;
-@class TransactionDetail_Time;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -701,17 +700,17 @@ typedef GPB_ENUM(GetTransactionFeeResponse_FieldNumber) {
 
 typedef GPB_ENUM(GetAddressTransactionsRequest_FieldNumber) {
   GetAddressTransactionsRequest_FieldNumber_Address = 1,
-  GetAddressTransactionsRequest_FieldNumber_Limit = 2,
-  GetAddressTransactionsRequest_FieldNumber_PageNumber = 3,
+  GetAddressTransactionsRequest_FieldNumber_Offset = 2,
+  GetAddressTransactionsRequest_FieldNumber_Limit = 3,
 };
 
 @interface GetAddressTransactionsRequest : GPBMessage
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *address;
 
-@property(nonatomic, readwrite) uint32_t limit;
+@property(nonatomic, readwrite) uint32_t offset;
 
-@property(nonatomic, readwrite) uint32_t pageNumber;
+@property(nonatomic, readwrite) uint32_t limit;
 
 @end
 
@@ -721,7 +720,7 @@ typedef GPB_ENUM(TransactionDetail_FieldNumber) {
   TransactionDetail_FieldNumber_Id_p = 1,
   TransactionDetail_FieldNumber_Amount = 2,
   TransactionDetail_FieldNumber_IsInput = 3,
-  TransactionDetail_FieldNumber_Time = 4,
+  TransactionDetail_FieldNumber_TimeUtc = 4,
 };
 
 @interface TransactionDetail : GPBMessage
@@ -732,24 +731,7 @@ typedef GPB_ENUM(TransactionDetail_FieldNumber) {
 
 @property(nonatomic, readwrite) BOOL isInput;
 
-@property(nonatomic, readwrite, strong, null_resettable) TransactionDetail_Time *time;
-/** Test to see if @c time has been set. */
-@property(nonatomic, readwrite) BOOL hasTime;
-
-@end
-
-#pragma mark - TransactionDetail_Time
-
-typedef GPB_ENUM(TransactionDetail_Time_FieldNumber) {
-  TransactionDetail_Time_FieldNumber_Seconds = 1,
-  TransactionDetail_Time_FieldNumber_Nanos = 2,
-};
-
-@interface TransactionDetail_Time : GPBMessage
-
-@property(nonatomic, readwrite) int64_t seconds;
-
-@property(nonatomic, readwrite) int32_t nanos;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *timeUtc;
 
 @end
 
