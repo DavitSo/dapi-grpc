@@ -7018,7 +7018,7 @@ proto.org.dash.platform.dapi.v0.TransactionDetail.toObject = function(includeIns
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     isInput: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    timeutc: jspb.Message.getFieldWithDefault(msg, 4, "")
+    timeUtc: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -7069,7 +7069,7 @@ proto.org.dash.platform.dapi.v0.TransactionDetail.deserializeBinaryFromReader = 
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTimeutc(value);
+      msg.setTimeUtc(value);
       break;
     default:
       reader.skipField();
@@ -7121,7 +7121,7 @@ proto.org.dash.platform.dapi.v0.TransactionDetail.serializeBinaryToWriter = func
       f
     );
   }
-  f = message.getTimeutc();
+  f = message.getTimeUtc();
   if (f.length > 0) {
     writer.writeString(
       4,
@@ -7186,10 +7186,10 @@ proto.org.dash.platform.dapi.v0.TransactionDetail.prototype.setIsInput = functio
 
 
 /**
- * optional string timeUtc = 4;
+ * optional string time_utc = 4;
  * @return {string}
  */
-proto.org.dash.platform.dapi.v0.TransactionDetail.prototype.getTimeutc = function() {
+proto.org.dash.platform.dapi.v0.TransactionDetail.prototype.getTimeUtc = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -7198,7 +7198,7 @@ proto.org.dash.platform.dapi.v0.TransactionDetail.prototype.getTimeutc = functio
  * @param {string} value
  * @return {!proto.org.dash.platform.dapi.v0.TransactionDetail} returns this
  */
-proto.org.dash.platform.dapi.v0.TransactionDetail.prototype.setTimeutc = function(value) {
+proto.org.dash.platform.dapi.v0.TransactionDetail.prototype.setTimeUtc = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 

@@ -215,7 +215,7 @@ message TransactionDetail {
   string id = 1;
   double amount = 2;
   bool is_input = 3;
-  string timeUtc = 4;
+  string time_utc = 4;
 }
 message GetAddressTransactionsResponse {
   repeated TransactionDetail transactions = 1;
