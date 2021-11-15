@@ -13,6 +13,7 @@ service Core {
   rpc getAddressBalance (GetAddressBalanceRequest) returns (GetAddressBalanceResponse);
   rpc getTransactionFee (GetTransactionFeeRequest) returns (GetTransactionFeeResponse);
   rpc getAddressTransactions (GetAddressTransactionsRequest) returns (GetAddressTransactionsResponse);
+  rpc getAddressUTXOs (GetAddressUTXORequest) returns (GetAddressUTXOResponse);
 }
 
 message GetStatusRequest {
@@ -219,4 +220,10 @@ message TransactionDetail {
 }
 message GetAddressTransactionsResponse {
   repeated TransactionDetail transactions = 1;
+}
+
+message GetAddressUTXORequest {
+  string address = 1;
+}
+message GetAddressUTXOResponse {
 }

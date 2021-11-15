@@ -142,4 +142,16 @@
              responseClass:[GetAddressTransactionsResponse class]
         responsesWriteable:[GRXWriteable writeableWithSingleHandler:handler]];
 }
+#pragma mark getAddressUTXOs(GetAddressUTXORequest) returns (GetAddressUTXOResponse)
+
+- (void)getAddressUTXOsWithRequest:(GetAddressUTXORequest *)request handler:(void(^)(GetAddressUTXOResponse *_Nullable response, NSError *_Nullable error))handler{
+  [[self RPCTogetAddressUTXOsWithRequest:request handler:handler] start];
+}
+// Returns a not-yet-started RPC object.
+- (GRPCProtoCall *)RPCTogetAddressUTXOsWithRequest:(GetAddressUTXORequest *)request handler:(void(^)(GetAddressUTXOResponse *_Nullable response, NSError *_Nullable error))handler{
+  return [self RPCToMethod:@"getAddressUTXOs"
+            requestsWriter:[GRXWriter writerWithValue:request]
+             responseClass:[GetAddressUTXOResponse class]
+        responsesWriteable:[GRXWriteable writeableWithSingleHandler:handler]];
+}
 @end

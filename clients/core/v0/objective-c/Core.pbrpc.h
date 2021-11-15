@@ -81,6 +81,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (GRPCProtoCall *)RPCTogetAddressTransactionsWithRequest:(GetAddressTransactionsRequest *)request handler:(void(^)(GetAddressTransactionsResponse *_Nullable response, NSError *_Nullable error))handler;
 
 
+#pragma mark getAddressUTXOs(GetAddressUTXORequest) returns (GetAddressUTXOResponse)
+
+- (void)getAddressUTXOsWithRequest:(GetAddressUTXORequest *)request handler:(void(^)(GetAddressUTXOResponse *_Nullable response, NSError *_Nullable error))handler;
+
+- (GRPCProtoCall *)RPCTogetAddressUTXOsWithRequest:(GetAddressUTXORequest *)request handler:(void(^)(GetAddressUTXOResponse *_Nullable response, NSError *_Nullable error))handler;
+
+
 @end
 
 /**

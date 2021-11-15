@@ -864,5 +864,85 @@ proto.org.dash.platform.dapi.v0.CorePromiseClient.prototype.getAddressTransactio
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.org.dash.platform.dapi.v0.GetAddressUTXORequest,
+ *   !proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse>}
+ */
+const methodDescriptor_Core_getAddressUTXOs = new grpc.web.MethodDescriptor(
+  '/org.dash.platform.dapi.v0.Core/getAddressUTXOs',
+  grpc.web.MethodType.UNARY,
+  proto.org.dash.platform.dapi.v0.GetAddressUTXORequest,
+  proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse,
+  /**
+   * @param {!proto.org.dash.platform.dapi.v0.GetAddressUTXORequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.org.dash.platform.dapi.v0.GetAddressUTXORequest,
+ *   !proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse>}
+ */
+const methodInfo_Core_getAddressUTXOs = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse,
+  /**
+   * @param {!proto.org.dash.platform.dapi.v0.GetAddressUTXORequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.org.dash.platform.dapi.v0.GetAddressUTXORequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.org.dash.platform.dapi.v0.CoreClient.prototype.getAddressUTXOs =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/org.dash.platform.dapi.v0.Core/getAddressUTXOs',
+      request,
+      metadata || {},
+      methodDescriptor_Core_getAddressUTXOs,
+      callback);
+};
+
+
+/**
+ * @param {!proto.org.dash.platform.dapi.v0.GetAddressUTXORequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse>}
+ *     Promise that resolves to the response
+ */
+proto.org.dash.platform.dapi.v0.CorePromiseClient.prototype.getAddressUTXOs =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/org.dash.platform.dapi.v0.Core/getAddressUTXOs',
+      request,
+      metadata || {},
+      methodDescriptor_Core_getAddressUTXOs);
+};
+
+
 module.exports = proto.org.dash.platform.dapi.v0;
 

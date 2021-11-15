@@ -2124,6 +2124,79 @@ typedef struct GetAddressTransactionsResponse__storage_ {
 
 @end
 
+#pragma mark - GetAddressUTXORequest
+
+@implementation GetAddressUTXORequest
+
+@dynamic address;
+
+typedef struct GetAddressUTXORequest__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *address;
+} GetAddressUTXORequest__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "address",
+        .dataTypeSpecific.className = NULL,
+        .number = GetAddressUTXORequest_FieldNumber_Address,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(GetAddressUTXORequest__storage_, address),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[GetAddressUTXORequest class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(GetAddressUTXORequest__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - GetAddressUTXOResponse
+
+@implementation GetAddressUTXOResponse
+
+
+typedef struct GetAddressUTXOResponse__storage_ {
+  uint32_t _has_storage_[1];
+} GetAddressUTXOResponse__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[GetAddressUTXOResponse class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:NULL
+                                    fieldCount:0
+                                   storageSize:sizeof(GetAddressUTXOResponse__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
 
 #pragma clang diagnostic pop
 
