@@ -7595,7 +7595,7 @@ proto.org.dash.platform.dapi.v0.Utxo.toObject = function(includeInstance, msg) {
     address: jspb.Message.getFieldWithDefault(msg, 2, ""),
     script: jspb.Message.getFieldWithDefault(msg, 3, ""),
     outputIndex: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    satoshis: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    satoshis: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0)
   };
 
   if (includeInstance) {
@@ -7649,7 +7649,7 @@ proto.org.dash.platform.dapi.v0.Utxo.deserializeBinaryFromReader = function(msg,
       msg.setOutputIndex(value);
       break;
     case 5:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setSatoshis(value);
       break;
     default:
@@ -7710,8 +7710,8 @@ proto.org.dash.platform.dapi.v0.Utxo.serializeBinaryToWriter = function(message,
     );
   }
   f = message.getSatoshis();
-  if (f !== 0) {
-    writer.writeUint32(
+  if (f !== 0.0) {
+    writer.writeDouble(
       5,
       f
     );
@@ -7792,11 +7792,11 @@ proto.org.dash.platform.dapi.v0.Utxo.prototype.setOutputIndex = function(value) 
 
 
 /**
- * optional uint32 satoshis = 5;
+ * optional double satoshis = 5;
  * @return {number}
  */
 proto.org.dash.platform.dapi.v0.Utxo.prototype.getSatoshis = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 5, 0.0));
 };
 
 
@@ -7805,7 +7805,7 @@ proto.org.dash.platform.dapi.v0.Utxo.prototype.getSatoshis = function() {
  * @return {!proto.org.dash.platform.dapi.v0.Utxo} returns this
  */
 proto.org.dash.platform.dapi.v0.Utxo.prototype.setSatoshis = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3FloatField(this, 5, value);
 };
 
 

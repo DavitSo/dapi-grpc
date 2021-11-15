@@ -2180,10 +2180,10 @@ typedef struct GetAddressUTXORequest__storage_ {
 typedef struct Utxo__storage_ {
   uint32_t _has_storage_[1];
   uint32_t outputIndex;
-  uint32_t satoshis;
   NSString *transactionId;
   NSString *address;
   NSString *script;
+  double satoshis;
 } Utxo__storage_;
 
 // This method is threadsafe because it is initially called
@@ -2235,7 +2235,7 @@ typedef struct Utxo__storage_ {
         .hasIndex = 4,
         .offset = (uint32_t)offsetof(Utxo__storage_, satoshis),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeUInt32,
+        .dataType = GPBDataTypeDouble,
       },
     };
     GPBDescriptor *localDescriptor =

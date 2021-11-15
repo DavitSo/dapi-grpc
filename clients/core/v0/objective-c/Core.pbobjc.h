@@ -782,7 +782,7 @@ typedef GPB_ENUM(Utxo_FieldNumber) {
 
 @property(nonatomic, readwrite) uint32_t outputIndex;
 
-@property(nonatomic, readwrite) uint32_t satoshis;
+@property(nonatomic, readwrite) double satoshis;
 
 @end
 

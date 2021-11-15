@@ -230,7 +230,7 @@ message Utxo {
   string address = 2;
   string script = 3;
   uint32 output_index = 4;
-  uint32 satoshis = 5;
+  double satoshis = 5;
 }
 message GetAddressUTXOResponse {
   repeated Utxo utxos = 1;

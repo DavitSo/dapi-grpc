@@ -8315,7 +8315,7 @@ $root.org = (function() {
                             if (message.outputIndex != null && Object.hasOwnProperty.call(message, "outputIndex"))
                                 writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.outputIndex);
                             if (message.satoshis != null && Object.hasOwnProperty.call(message, "satoshis"))
-                                writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.satoshis);
+                                writer.uint32(/* id 5, wireType 1 =*/41).double(message.satoshis);
                             return writer;
                         };
 
@@ -8363,7 +8363,7 @@ $root.org = (function() {
                                     message.outputIndex = reader.uint32();
                                     break;
                                 case 5:
-                                    message.satoshis = reader.uint32();
+                                    message.satoshis = reader.double();
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -8413,8 +8413,8 @@ $root.org = (function() {
                                 if (!$util.isInteger(message.outputIndex))
                                     return "outputIndex: integer expected";
                             if (message.satoshis != null && message.hasOwnProperty("satoshis"))
-                                if (!$util.isInteger(message.satoshis))
-                                    return "satoshis: integer expected";
+                                if (typeof message.satoshis !== "number")
+                                    return "satoshis: number expected";
                             return null;
                         };
 
@@ -8439,7 +8439,7 @@ $root.org = (function() {
                             if (object.outputIndex != null)
                                 message.outputIndex = object.outputIndex >>> 0;
                             if (object.satoshis != null)
-                                message.satoshis = object.satoshis >>> 0;
+                                message.satoshis = Number(object.satoshis);
                             return message;
                         };
 
@@ -8472,7 +8472,7 @@ $root.org = (function() {
                             if (message.outputIndex != null && message.hasOwnProperty("outputIndex"))
                                 object.outputIndex = message.outputIndex;
                             if (message.satoshis != null && message.hasOwnProperty("satoshis"))
-                                object.satoshis = message.satoshis;
+                                object.satoshis = options.json && !isFinite(message.satoshis) ? String(message.satoshis) : message.satoshis;
                             return object;
                         };
 
