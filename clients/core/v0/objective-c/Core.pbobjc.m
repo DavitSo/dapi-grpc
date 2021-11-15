@@ -2167,22 +2167,22 @@ typedef struct GetAddressUTXORequest__storage_ {
 
 @end
 
-#pragma mark - GetAddressUTXOResponse
+#pragma mark - Utxo
 
-@implementation GetAddressUTXOResponse
+@implementation Utxo
 
 @dynamic transactionId;
 @dynamic address;
 @dynamic outputIndex;
 @dynamic satoshis;
 
-typedef struct GetAddressUTXOResponse__storage_ {
+typedef struct Utxo__storage_ {
   uint32_t _has_storage_[1];
   uint32_t outputIndex;
   uint32_t satoshis;
   NSString *transactionId;
   NSString *address;
-} GetAddressUTXOResponse__storage_;
+} Utxo__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -2193,38 +2193,81 @@ typedef struct GetAddressUTXOResponse__storage_ {
       {
         .name = "transactionId",
         .dataTypeSpecific.className = NULL,
-        .number = GetAddressUTXOResponse_FieldNumber_TransactionId,
+        .number = Utxo_FieldNumber_TransactionId,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(GetAddressUTXOResponse__storage_, transactionId),
+        .offset = (uint32_t)offsetof(Utxo__storage_, transactionId),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "address",
         .dataTypeSpecific.className = NULL,
-        .number = GetAddressUTXOResponse_FieldNumber_Address,
+        .number = Utxo_FieldNumber_Address,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(GetAddressUTXOResponse__storage_, address),
+        .offset = (uint32_t)offsetof(Utxo__storage_, address),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "outputIndex",
         .dataTypeSpecific.className = NULL,
-        .number = GetAddressUTXOResponse_FieldNumber_OutputIndex,
+        .number = Utxo_FieldNumber_OutputIndex,
         .hasIndex = 2,
-        .offset = (uint32_t)offsetof(GetAddressUTXOResponse__storage_, outputIndex),
+        .offset = (uint32_t)offsetof(Utxo__storage_, outputIndex),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeUInt32,
       },
       {
         .name = "satoshis",
         .dataTypeSpecific.className = NULL,
-        .number = GetAddressUTXOResponse_FieldNumber_Satoshis,
+        .number = Utxo_FieldNumber_Satoshis,
         .hasIndex = 3,
-        .offset = (uint32_t)offsetof(GetAddressUTXOResponse__storage_, satoshis),
+        .offset = (uint32_t)offsetof(Utxo__storage_, satoshis),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeUInt32,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[Utxo class]
+                                     rootClass:[CoreRoot class]
+                                          file:CoreRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(Utxo__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - GetAddressUTXOResponse
+
+@implementation GetAddressUTXOResponse
+
+@dynamic utxosArray, utxosArray_Count;
+
+typedef struct GetAddressUTXOResponse__storage_ {
+  uint32_t _has_storage_[1];
+  NSMutableArray *utxosArray;
+} GetAddressUTXOResponse__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "utxosArray",
+        .dataTypeSpecific.className = GPBStringifySymbol(Utxo),
+        .number = GetAddressUTXOResponse_FieldNumber_UtxosArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(GetAddressUTXOResponse__storage_, utxosArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =

@@ -8214,16 +8214,267 @@ $root.org = (function() {
                         return GetAddressUTXORequest;
                     })();
 
+                    v0.Utxo = (function() {
+
+                        /**
+                         * Properties of an Utxo.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @interface IUtxo
+                         * @property {string|null} [transactionId] Utxo transactionId
+                         * @property {string|null} [address] Utxo address
+                         * @property {number|null} [outputIndex] Utxo outputIndex
+                         * @property {number|null} [satoshis] Utxo satoshis
+                         */
+
+                        /**
+                         * Constructs a new Utxo.
+                         * @memberof org.dash.platform.dapi.v0
+                         * @classdesc Represents an Utxo.
+                         * @implements IUtxo
+                         * @constructor
+                         * @param {org.dash.platform.dapi.v0.IUtxo=} [properties] Properties to set
+                         */
+                        function Utxo(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+
+                        /**
+                         * Utxo transactionId.
+                         * @member {string} transactionId
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @instance
+                         */
+                        Utxo.prototype.transactionId = "";
+
+                        /**
+                         * Utxo address.
+                         * @member {string} address
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @instance
+                         */
+                        Utxo.prototype.address = "";
+
+                        /**
+                         * Utxo outputIndex.
+                         * @member {number} outputIndex
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @instance
+                         */
+                        Utxo.prototype.outputIndex = 0;
+
+                        /**
+                         * Utxo satoshis.
+                         * @member {number} satoshis
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @instance
+                         */
+                        Utxo.prototype.satoshis = 0;
+
+                        /**
+                         * Creates a new Utxo instance using the specified properties.
+                         * @function create
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IUtxo=} [properties] Properties to set
+                         * @returns {org.dash.platform.dapi.v0.Utxo} Utxo instance
+                         */
+                        Utxo.create = function create(properties) {
+                            return new Utxo(properties);
+                        };
+
+                        /**
+                         * Encodes the specified Utxo message. Does not implicitly {@link org.dash.platform.dapi.v0.Utxo.verify|verify} messages.
+                         * @function encode
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IUtxo} message Utxo message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Utxo.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.transactionId != null && Object.hasOwnProperty.call(message, "transactionId"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.transactionId);
+                            if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.address);
+                            if (message.outputIndex != null && Object.hasOwnProperty.call(message, "outputIndex"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.outputIndex);
+                            if (message.satoshis != null && Object.hasOwnProperty.call(message, "satoshis"))
+                                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.satoshis);
+                            return writer;
+                        };
+
+                        /**
+                         * Encodes the specified Utxo message, length delimited. Does not implicitly {@link org.dash.platform.dapi.v0.Utxo.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.IUtxo} message Utxo message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Utxo.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+
+                        /**
+                         * Decodes an Utxo message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {org.dash.platform.dapi.v0.Utxo} Utxo
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Utxo.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.org.dash.platform.dapi.v0.Utxo();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.transactionId = reader.string();
+                                    break;
+                                case 2:
+                                    message.address = reader.string();
+                                    break;
+                                case 3:
+                                    message.outputIndex = reader.uint32();
+                                    break;
+                                case 4:
+                                    message.satoshis = reader.uint32();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Decodes an Utxo message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {org.dash.platform.dapi.v0.Utxo} Utxo
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Utxo.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+
+                        /**
+                         * Verifies an Utxo message.
+                         * @function verify
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Utxo.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.transactionId != null && message.hasOwnProperty("transactionId"))
+                                if (!$util.isString(message.transactionId))
+                                    return "transactionId: string expected";
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                if (!$util.isString(message.address))
+                                    return "address: string expected";
+                            if (message.outputIndex != null && message.hasOwnProperty("outputIndex"))
+                                if (!$util.isInteger(message.outputIndex))
+                                    return "outputIndex: integer expected";
+                            if (message.satoshis != null && message.hasOwnProperty("satoshis"))
+                                if (!$util.isInteger(message.satoshis))
+                                    return "satoshis: integer expected";
+                            return null;
+                        };
+
+                        /**
+                         * Creates an Utxo message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {org.dash.platform.dapi.v0.Utxo} Utxo
+                         */
+                        Utxo.fromObject = function fromObject(object) {
+                            if (object instanceof $root.org.dash.platform.dapi.v0.Utxo)
+                                return object;
+                            var message = new $root.org.dash.platform.dapi.v0.Utxo();
+                            if (object.transactionId != null)
+                                message.transactionId = String(object.transactionId);
+                            if (object.address != null)
+                                message.address = String(object.address);
+                            if (object.outputIndex != null)
+                                message.outputIndex = object.outputIndex >>> 0;
+                            if (object.satoshis != null)
+                                message.satoshis = object.satoshis >>> 0;
+                            return message;
+                        };
+
+                        /**
+                         * Creates a plain object from an Utxo message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @static
+                         * @param {org.dash.platform.dapi.v0.Utxo} message Utxo
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Utxo.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.transactionId = "";
+                                object.address = "";
+                                object.outputIndex = 0;
+                                object.satoshis = 0;
+                            }
+                            if (message.transactionId != null && message.hasOwnProperty("transactionId"))
+                                object.transactionId = message.transactionId;
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                object.address = message.address;
+                            if (message.outputIndex != null && message.hasOwnProperty("outputIndex"))
+                                object.outputIndex = message.outputIndex;
+                            if (message.satoshis != null && message.hasOwnProperty("satoshis"))
+                                object.satoshis = message.satoshis;
+                            return object;
+                        };
+
+                        /**
+                         * Converts this Utxo to JSON.
+                         * @function toJSON
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Utxo.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+
+                        return Utxo;
+                    })();
+
                     v0.GetAddressUTXOResponse = (function() {
 
                         /**
                          * Properties of a GetAddressUTXOResponse.
                          * @memberof org.dash.platform.dapi.v0
                          * @interface IGetAddressUTXOResponse
-                         * @property {string|null} [transactionId] GetAddressUTXOResponse transactionId
-                         * @property {string|null} [address] GetAddressUTXOResponse address
-                         * @property {number|null} [outputIndex] GetAddressUTXOResponse outputIndex
-                         * @property {number|null} [satoshis] GetAddressUTXOResponse satoshis
+                         * @property {Array.<org.dash.platform.dapi.v0.IUtxo>|null} [utxos] GetAddressUTXOResponse utxos
                          */
 
                         /**
@@ -8235,6 +8486,7 @@ $root.org = (function() {
                          * @param {org.dash.platform.dapi.v0.IGetAddressUTXOResponse=} [properties] Properties to set
                          */
                         function GetAddressUTXOResponse(properties) {
+                            this.utxos = [];
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -8242,36 +8494,12 @@ $root.org = (function() {
                         }
 
                         /**
-                         * GetAddressUTXOResponse transactionId.
-                         * @member {string} transactionId
+                         * GetAddressUTXOResponse utxos.
+                         * @member {Array.<org.dash.platform.dapi.v0.IUtxo>} utxos
                          * @memberof org.dash.platform.dapi.v0.GetAddressUTXOResponse
                          * @instance
                          */
-                        GetAddressUTXOResponse.prototype.transactionId = "";
-
-                        /**
-                         * GetAddressUTXOResponse address.
-                         * @member {string} address
-                         * @memberof org.dash.platform.dapi.v0.GetAddressUTXOResponse
-                         * @instance
-                         */
-                        GetAddressUTXOResponse.prototype.address = "";
-
-                        /**
-                         * GetAddressUTXOResponse outputIndex.
-                         * @member {number} outputIndex
-                         * @memberof org.dash.platform.dapi.v0.GetAddressUTXOResponse
-                         * @instance
-                         */
-                        GetAddressUTXOResponse.prototype.outputIndex = 0;
-
-                        /**
-                         * GetAddressUTXOResponse satoshis.
-                         * @member {number} satoshis
-                         * @memberof org.dash.platform.dapi.v0.GetAddressUTXOResponse
-                         * @instance
-                         */
-                        GetAddressUTXOResponse.prototype.satoshis = 0;
+                        GetAddressUTXOResponse.prototype.utxos = $util.emptyArray;
 
                         /**
                          * Creates a new GetAddressUTXOResponse instance using the specified properties.
@@ -8297,14 +8525,9 @@ $root.org = (function() {
                         GetAddressUTXOResponse.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.transactionId != null && Object.hasOwnProperty.call(message, "transactionId"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.transactionId);
-                            if (message.address != null && Object.hasOwnProperty.call(message, "address"))
-                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.address);
-                            if (message.outputIndex != null && Object.hasOwnProperty.call(message, "outputIndex"))
-                                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.outputIndex);
-                            if (message.satoshis != null && Object.hasOwnProperty.call(message, "satoshis"))
-                                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.satoshis);
+                            if (message.utxos != null && message.utxos.length)
+                                for (var i = 0; i < message.utxos.length; ++i)
+                                    $root.org.dash.platform.dapi.v0.Utxo.encode(message.utxos[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                             return writer;
                         };
 
@@ -8340,16 +8563,9 @@ $root.org = (function() {
                                 var tag = reader.uint32();
                                 switch (tag >>> 3) {
                                 case 1:
-                                    message.transactionId = reader.string();
-                                    break;
-                                case 2:
-                                    message.address = reader.string();
-                                    break;
-                                case 3:
-                                    message.outputIndex = reader.uint32();
-                                    break;
-                                case 4:
-                                    message.satoshis = reader.uint32();
+                                    if (!(message.utxos && message.utxos.length))
+                                        message.utxos = [];
+                                    message.utxos.push($root.org.dash.platform.dapi.v0.Utxo.decode(reader, reader.uint32()));
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -8386,18 +8602,15 @@ $root.org = (function() {
                         GetAddressUTXOResponse.verify = function verify(message) {
                             if (typeof message !== "object" || message === null)
                                 return "object expected";
-                            if (message.transactionId != null && message.hasOwnProperty("transactionId"))
-                                if (!$util.isString(message.transactionId))
-                                    return "transactionId: string expected";
-                            if (message.address != null && message.hasOwnProperty("address"))
-                                if (!$util.isString(message.address))
-                                    return "address: string expected";
-                            if (message.outputIndex != null && message.hasOwnProperty("outputIndex"))
-                                if (!$util.isInteger(message.outputIndex))
-                                    return "outputIndex: integer expected";
-                            if (message.satoshis != null && message.hasOwnProperty("satoshis"))
-                                if (!$util.isInteger(message.satoshis))
-                                    return "satoshis: integer expected";
+                            if (message.utxos != null && message.hasOwnProperty("utxos")) {
+                                if (!Array.isArray(message.utxos))
+                                    return "utxos: array expected";
+                                for (var i = 0; i < message.utxos.length; ++i) {
+                                    var error = $root.org.dash.platform.dapi.v0.Utxo.verify(message.utxos[i]);
+                                    if (error)
+                                        return "utxos." + error;
+                                }
+                            }
                             return null;
                         };
 
@@ -8413,14 +8626,16 @@ $root.org = (function() {
                             if (object instanceof $root.org.dash.platform.dapi.v0.GetAddressUTXOResponse)
                                 return object;
                             var message = new $root.org.dash.platform.dapi.v0.GetAddressUTXOResponse();
-                            if (object.transactionId != null)
-                                message.transactionId = String(object.transactionId);
-                            if (object.address != null)
-                                message.address = String(object.address);
-                            if (object.outputIndex != null)
-                                message.outputIndex = object.outputIndex >>> 0;
-                            if (object.satoshis != null)
-                                message.satoshis = object.satoshis >>> 0;
+                            if (object.utxos) {
+                                if (!Array.isArray(object.utxos))
+                                    throw TypeError(".org.dash.platform.dapi.v0.GetAddressUTXOResponse.utxos: array expected");
+                                message.utxos = [];
+                                for (var i = 0; i < object.utxos.length; ++i) {
+                                    if (typeof object.utxos[i] !== "object")
+                                        throw TypeError(".org.dash.platform.dapi.v0.GetAddressUTXOResponse.utxos: object expected");
+                                    message.utxos[i] = $root.org.dash.platform.dapi.v0.Utxo.fromObject(object.utxos[i]);
+                                }
+                            }
                             return message;
                         };
 
@@ -8437,20 +8652,13 @@ $root.org = (function() {
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.defaults) {
-                                object.transactionId = "";
-                                object.address = "";
-                                object.outputIndex = 0;
-                                object.satoshis = 0;
+                            if (options.arrays || options.defaults)
+                                object.utxos = [];
+                            if (message.utxos && message.utxos.length) {
+                                object.utxos = [];
+                                for (var j = 0; j < message.utxos.length; ++j)
+                                    object.utxos[j] = $root.org.dash.platform.dapi.v0.Utxo.toObject(message.utxos[j], options);
                             }
-                            if (message.transactionId != null && message.hasOwnProperty("transactionId"))
-                                object.transactionId = message.transactionId;
-                            if (message.address != null && message.hasOwnProperty("address"))
-                                object.address = message.address;
-                            if (message.outputIndex != null && message.hasOwnProperty("outputIndex"))
-                                object.outputIndex = message.outputIndex;
-                            if (message.satoshis != null && message.hasOwnProperty("satoshis"))
-                                object.satoshis = message.satoshis;
                             return object;
                         };
 

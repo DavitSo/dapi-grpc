@@ -225,9 +225,12 @@ message GetAddressTransactionsResponse {
 message GetAddressUTXORequest {
   string address = 1;
 }
-message GetAddressUTXOResponse {
+message Utxo {
   string transaction_id = 1;
   string address = 2;
   uint32 output_index = 3;
   uint32 satoshis = 4;
+}
+message GetAddressUTXOResponse {
+  repeated Utxo utxos = 1;
 }

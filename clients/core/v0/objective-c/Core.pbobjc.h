@@ -39,6 +39,7 @@ CF_EXTERN_C_BEGIN
 @class InstantSendLockMessages;
 @class RawTransactions;
 @class TransactionDetail;
+@class Utxo;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -761,16 +762,16 @@ typedef GPB_ENUM(GetAddressUTXORequest_FieldNumber) {
 
 @end
 
-#pragma mark - GetAddressUTXOResponse
+#pragma mark - Utxo
 
-typedef GPB_ENUM(GetAddressUTXOResponse_FieldNumber) {
-  GetAddressUTXOResponse_FieldNumber_TransactionId = 1,
-  GetAddressUTXOResponse_FieldNumber_Address = 2,
-  GetAddressUTXOResponse_FieldNumber_OutputIndex = 3,
-  GetAddressUTXOResponse_FieldNumber_Satoshis = 4,
+typedef GPB_ENUM(Utxo_FieldNumber) {
+  Utxo_FieldNumber_TransactionId = 1,
+  Utxo_FieldNumber_Address = 2,
+  Utxo_FieldNumber_OutputIndex = 3,
+  Utxo_FieldNumber_Satoshis = 4,
 };
 
-@interface GetAddressUTXOResponse : GPBMessage
+@interface Utxo : GPBMessage
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *transactionId;
 
@@ -779,6 +780,20 @@ typedef GPB_ENUM(GetAddressUTXOResponse_FieldNumber) {
 @property(nonatomic, readwrite) uint32_t outputIndex;
 
 @property(nonatomic, readwrite) uint32_t satoshis;
+
+@end
+
+#pragma mark - GetAddressUTXOResponse
+
+typedef GPB_ENUM(GetAddressUTXOResponse_FieldNumber) {
+  GetAddressUTXOResponse_FieldNumber_UtxosArray = 1,
+};
+
+@interface GetAddressUTXOResponse : GPBMessage
+
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<Utxo*> *utxosArray;
+/** The number of items in @c utxosArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger utxosArray_Count;
 
 @end
 
