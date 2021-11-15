@@ -228,8 +228,9 @@ message GetAddressUTXORequest {
 message Utxo {
   string transaction_id = 1;
   string address = 2;
-  uint32 output_index = 3;
-  uint32 satoshis = 4;
+  string script = 3;
+  uint32 output_index = 4;
+  uint32 satoshis = 5;
 }
 message GetAddressUTXOResponse {
   repeated Utxo utxos = 1;

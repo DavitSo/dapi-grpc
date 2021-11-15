@@ -767,8 +767,9 @@ typedef GPB_ENUM(GetAddressUTXORequest_FieldNumber) {
 typedef GPB_ENUM(Utxo_FieldNumber) {
   Utxo_FieldNumber_TransactionId = 1,
   Utxo_FieldNumber_Address = 2,
-  Utxo_FieldNumber_OutputIndex = 3,
-  Utxo_FieldNumber_Satoshis = 4,
+  Utxo_FieldNumber_Script = 3,
+  Utxo_FieldNumber_OutputIndex = 4,
+  Utxo_FieldNumber_Satoshis = 5,
 };
 
 @interface Utxo : GPBMessage
@@ -776,6 +777,8 @@ typedef GPB_ENUM(Utxo_FieldNumber) {
 @property(nonatomic, readwrite, copy, null_resettable) NSString *transactionId;
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *script;
 
 @property(nonatomic, readwrite) uint32_t outputIndex;
 

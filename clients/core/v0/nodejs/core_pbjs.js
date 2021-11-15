@@ -8222,6 +8222,7 @@ $root.org = (function() {
                          * @interface IUtxo
                          * @property {string|null} [transactionId] Utxo transactionId
                          * @property {string|null} [address] Utxo address
+                         * @property {string|null} [script] Utxo script
                          * @property {number|null} [outputIndex] Utxo outputIndex
                          * @property {number|null} [satoshis] Utxo satoshis
                          */
@@ -8256,6 +8257,14 @@ $root.org = (function() {
                          * @instance
                          */
                         Utxo.prototype.address = "";
+
+                        /**
+                         * Utxo script.
+                         * @member {string} script
+                         * @memberof org.dash.platform.dapi.v0.Utxo
+                         * @instance
+                         */
+                        Utxo.prototype.script = "";
 
                         /**
                          * Utxo outputIndex.
@@ -8301,10 +8310,12 @@ $root.org = (function() {
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.transactionId);
                             if (message.address != null && Object.hasOwnProperty.call(message, "address"))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.address);
+                            if (message.script != null && Object.hasOwnProperty.call(message, "script"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.script);
                             if (message.outputIndex != null && Object.hasOwnProperty.call(message, "outputIndex"))
-                                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.outputIndex);
+                                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.outputIndex);
                             if (message.satoshis != null && Object.hasOwnProperty.call(message, "satoshis"))
-                                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.satoshis);
+                                writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.satoshis);
                             return writer;
                         };
 
@@ -8346,9 +8357,12 @@ $root.org = (function() {
                                     message.address = reader.string();
                                     break;
                                 case 3:
-                                    message.outputIndex = reader.uint32();
+                                    message.script = reader.string();
                                     break;
                                 case 4:
+                                    message.outputIndex = reader.uint32();
+                                    break;
+                                case 5:
                                     message.satoshis = reader.uint32();
                                     break;
                                 default:
@@ -8392,6 +8406,9 @@ $root.org = (function() {
                             if (message.address != null && message.hasOwnProperty("address"))
                                 if (!$util.isString(message.address))
                                     return "address: string expected";
+                            if (message.script != null && message.hasOwnProperty("script"))
+                                if (!$util.isString(message.script))
+                                    return "script: string expected";
                             if (message.outputIndex != null && message.hasOwnProperty("outputIndex"))
                                 if (!$util.isInteger(message.outputIndex))
                                     return "outputIndex: integer expected";
@@ -8417,6 +8434,8 @@ $root.org = (function() {
                                 message.transactionId = String(object.transactionId);
                             if (object.address != null)
                                 message.address = String(object.address);
+                            if (object.script != null)
+                                message.script = String(object.script);
                             if (object.outputIndex != null)
                                 message.outputIndex = object.outputIndex >>> 0;
                             if (object.satoshis != null)
@@ -8440,6 +8459,7 @@ $root.org = (function() {
                             if (options.defaults) {
                                 object.transactionId = "";
                                 object.address = "";
+                                object.script = "";
                                 object.outputIndex = 0;
                                 object.satoshis = 0;
                             }
@@ -8447,6 +8467,8 @@ $root.org = (function() {
                                 object.transactionId = message.transactionId;
                             if (message.address != null && message.hasOwnProperty("address"))
                                 object.address = message.address;
+                            if (message.script != null && message.hasOwnProperty("script"))
+                                object.script = message.script;
                             if (message.outputIndex != null && message.hasOwnProperty("outputIndex"))
                                 object.outputIndex = message.outputIndex;
                             if (message.satoshis != null && message.hasOwnProperty("satoshis"))

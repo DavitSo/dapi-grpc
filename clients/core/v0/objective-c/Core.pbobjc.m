@@ -2173,6 +2173,7 @@ typedef struct GetAddressUTXORequest__storage_ {
 
 @dynamic transactionId;
 @dynamic address;
+@dynamic script;
 @dynamic outputIndex;
 @dynamic satoshis;
 
@@ -2182,6 +2183,7 @@ typedef struct Utxo__storage_ {
   uint32_t satoshis;
   NSString *transactionId;
   NSString *address;
+  NSString *script;
 } Utxo__storage_;
 
 // This method is threadsafe because it is initially called
@@ -2209,10 +2211,19 @@ typedef struct Utxo__storage_ {
         .dataType = GPBDataTypeString,
       },
       {
+        .name = "script",
+        .dataTypeSpecific.className = NULL,
+        .number = Utxo_FieldNumber_Script,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(Utxo__storage_, script),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
         .name = "outputIndex",
         .dataTypeSpecific.className = NULL,
         .number = Utxo_FieldNumber_OutputIndex,
-        .hasIndex = 2,
+        .hasIndex = 3,
         .offset = (uint32_t)offsetof(Utxo__storage_, outputIndex),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeUInt32,
@@ -2221,7 +2232,7 @@ typedef struct Utxo__storage_ {
         .name = "satoshis",
         .dataTypeSpecific.className = NULL,
         .number = Utxo_FieldNumber_Satoshis,
-        .hasIndex = 3,
+        .hasIndex = 4,
         .offset = (uint32_t)offsetof(Utxo__storage_, satoshis),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeUInt32,
