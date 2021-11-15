@@ -417,31 +417,31 @@ $root.org = (function() {
                          */
 
                         /**
-                         * Callback as used by {@link org.dash.platform.dapi.v0.Core#getAddressUTXOs}.
+                         * Callback as used by {@link org.dash.platform.dapi.v0.Core#getAddressUTXO}.
                          * @memberof org.dash.platform.dapi.v0.Core
-                         * @typedef getAddressUTXOsCallback
+                         * @typedef getAddressUTXOCallback
                          * @type {function}
                          * @param {Error|null} error Error, if any
                          * @param {org.dash.platform.dapi.v0.GetAddressUTXOResponse} [response] GetAddressUTXOResponse
                          */
 
                         /**
-                         * Calls getAddressUTXOs.
-                         * @function getAddressUTXOs
+                         * Calls getAddressUTXO.
+                         * @function getAddressUTXO
                          * @memberof org.dash.platform.dapi.v0.Core
                          * @instance
                          * @param {org.dash.platform.dapi.v0.IGetAddressUTXORequest} request GetAddressUTXORequest message or plain object
-                         * @param {org.dash.platform.dapi.v0.Core.getAddressUTXOsCallback} callback Node-style callback called with the error, if any, and GetAddressUTXOResponse
+                         * @param {org.dash.platform.dapi.v0.Core.getAddressUTXOCallback} callback Node-style callback called with the error, if any, and GetAddressUTXOResponse
                          * @returns {undefined}
                          * @variation 1
                          */
-                        Object.defineProperty(Core.prototype.getAddressUTXOs = function getAddressUTXOs(request, callback) {
-                            return this.rpcCall(getAddressUTXOs, $root.org.dash.platform.dapi.v0.GetAddressUTXORequest, $root.org.dash.platform.dapi.v0.GetAddressUTXOResponse, request, callback);
-                        }, "name", { value: "getAddressUTXOs" });
+                        Object.defineProperty(Core.prototype.getAddressUTXO = function getAddressUTXO(request, callback) {
+                            return this.rpcCall(getAddressUTXO, $root.org.dash.platform.dapi.v0.GetAddressUTXORequest, $root.org.dash.platform.dapi.v0.GetAddressUTXOResponse, request, callback);
+                        }, "name", { value: "getAddressUTXO" });
 
                         /**
-                         * Calls getAddressUTXOs.
-                         * @function getAddressUTXOs
+                         * Calls getAddressUTXO.
+                         * @function getAddressUTXO
                          * @memberof org.dash.platform.dapi.v0.Core
                          * @instance
                          * @param {org.dash.platform.dapi.v0.IGetAddressUTXORequest} request GetAddressUTXORequest message or plain object

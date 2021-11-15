@@ -149,11 +149,11 @@ public final class CoreGrpc {
           .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest,
-      org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse> METHOD_GET_ADDRESS_UTXOS =
+      org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse> METHOD_GET_ADDRESS_UTXO =
       io.grpc.MethodDescriptor.<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest, org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
-              "org.dash.platform.dapi.v0.Core", "getAddressUTXOs"))
+              "org.dash.platform.dapi.v0.Core", "getAddressUTXO"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -259,9 +259,9 @@ public final class CoreGrpc {
 
     /**
      */
-    public void getAddressUTXOs(org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest request,
+    public void getAddressUTXO(org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest request,
         io.grpc.stub.StreamObserver<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_GET_ADDRESS_UTXOS, responseObserver);
+      asyncUnimplementedUnaryCall(METHOD_GET_ADDRESS_UTXO, responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -337,12 +337,12 @@ public final class CoreGrpc {
                 org.dash.platform.dapi.v0.CoreOuterClass.GetAddressTransactionsResponse>(
                   this, METHODID_GET_ADDRESS_TRANSACTIONS)))
           .addMethod(
-            METHOD_GET_ADDRESS_UTXOS,
+            METHOD_GET_ADDRESS_UTXO,
             asyncUnaryCall(
               new MethodHandlers<
                 org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest,
                 org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse>(
-                  this, METHODID_GET_ADDRESS_UTXOS)))
+                  this, METHODID_GET_ADDRESS_UTXO)))
           .build();
     }
   }
@@ -447,10 +447,10 @@ public final class CoreGrpc {
 
     /**
      */
-    public void getAddressUTXOs(org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest request,
+    public void getAddressUTXO(org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest request,
         io.grpc.stub.StreamObserver<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_GET_ADDRESS_UTXOS, getCallOptions()), request, responseObserver);
+          getChannel().newCall(METHOD_GET_ADDRESS_UTXO, getCallOptions()), request, responseObserver);
     }
   }
 
@@ -546,9 +546,9 @@ public final class CoreGrpc {
 
     /**
      */
-    public org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse getAddressUTXOs(org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest request) {
+    public org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse getAddressUTXO(org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_GET_ADDRESS_UTXOS, getCallOptions(), request);
+          getChannel(), METHOD_GET_ADDRESS_UTXO, getCallOptions(), request);
     }
   }
 
@@ -636,10 +636,10 @@ public final class CoreGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse> getAddressUTXOs(
+    public com.google.common.util.concurrent.ListenableFuture<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse> getAddressUTXO(
         org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_GET_ADDRESS_UTXOS, getCallOptions()), request);
+          getChannel().newCall(METHOD_GET_ADDRESS_UTXO, getCallOptions()), request);
     }
   }
 
@@ -653,7 +653,7 @@ public final class CoreGrpc {
   private static final int METHODID_GET_ADDRESS_BALANCE = 7;
   private static final int METHODID_GET_TRANSACTION_FEE = 8;
   private static final int METHODID_GET_ADDRESS_TRANSACTIONS = 9;
-  private static final int METHODID_GET_ADDRESS_UTXOS = 10;
+  private static final int METHODID_GET_ADDRESS_UTXO = 10;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -712,8 +712,8 @@ public final class CoreGrpc {
           serviceImpl.getAddressTransactions((org.dash.platform.dapi.v0.CoreOuterClass.GetAddressTransactionsRequest) request,
               (io.grpc.stub.StreamObserver<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressTransactionsResponse>) responseObserver);
           break;
-        case METHODID_GET_ADDRESS_UTXOS:
-          serviceImpl.getAddressUTXOs((org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest) request,
+        case METHODID_GET_ADDRESS_UTXO:
+          serviceImpl.getAddressUTXO((org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXORequest) request,
               (io.grpc.stub.StreamObserver<org.dash.platform.dapi.v0.CoreOuterClass.GetAddressUTXOResponse>) responseObserver);
           break;
         default:
@@ -759,7 +759,7 @@ public final class CoreGrpc {
               .addMethod(METHOD_GET_ADDRESS_BALANCE)
               .addMethod(METHOD_GET_TRANSACTION_FEE)
               .addMethod(METHOD_GET_ADDRESS_TRANSACTIONS)
-              .addMethod(METHOD_GET_ADDRESS_UTXOS)
+              .addMethod(METHOD_GET_ADDRESS_UTXO)
               .build();
         }
       }

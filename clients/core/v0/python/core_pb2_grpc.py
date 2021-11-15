@@ -64,8 +64,8 @@ class CoreStub(object):
         request_serializer=core__pb2.GetAddressTransactionsRequest.SerializeToString,
         response_deserializer=core__pb2.GetAddressTransactionsResponse.FromString,
         )
-    self.getAddressUTXOs = channel.unary_unary(
-        '/org.dash.platform.dapi.v0.Core/getAddressUTXOs',
+    self.getAddressUTXO = channel.unary_unary(
+        '/org.dash.platform.dapi.v0.Core/getAddressUTXO',
         request_serializer=core__pb2.GetAddressUTXORequest.SerializeToString,
         response_deserializer=core__pb2.GetAddressUTXOResponse.FromString,
         )
@@ -145,7 +145,7 @@ class CoreServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def getAddressUTXOs(self, request, context):
+  def getAddressUTXO(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -205,8 +205,8 @@ def add_CoreServicer_to_server(servicer, server):
           request_deserializer=core__pb2.GetAddressTransactionsRequest.FromString,
           response_serializer=core__pb2.GetAddressTransactionsResponse.SerializeToString,
       ),
-      'getAddressUTXOs': grpc.unary_unary_rpc_method_handler(
-          servicer.getAddressUTXOs,
+      'getAddressUTXO': grpc.unary_unary_rpc_method_handler(
+          servicer.getAddressUTXO,
           request_deserializer=core__pb2.GetAddressUTXORequest.FromString,
           response_serializer=core__pb2.GetAddressUTXOResponse.SerializeToString,
       ),
