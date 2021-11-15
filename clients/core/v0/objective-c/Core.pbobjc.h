@@ -763,7 +763,22 @@ typedef GPB_ENUM(GetAddressUTXORequest_FieldNumber) {
 
 #pragma mark - GetAddressUTXOResponse
 
+typedef GPB_ENUM(GetAddressUTXOResponse_FieldNumber) {
+  GetAddressUTXOResponse_FieldNumber_TransactionId = 1,
+  GetAddressUTXOResponse_FieldNumber_Address = 2,
+  GetAddressUTXOResponse_FieldNumber_OutputIndex = 3,
+  GetAddressUTXOResponse_FieldNumber_Satoshis = 4,
+};
+
 @interface GetAddressUTXOResponse : GPBMessage
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *transactionId;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+
+@property(nonatomic, readwrite) uint32_t outputIndex;
+
+@property(nonatomic, readwrite) uint32_t satoshis;
 
 @end
 

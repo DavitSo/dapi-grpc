@@ -8220,6 +8220,10 @@ $root.org = (function() {
                          * Properties of a GetAddressUTXOResponse.
                          * @memberof org.dash.platform.dapi.v0
                          * @interface IGetAddressUTXOResponse
+                         * @property {string|null} [transactionId] GetAddressUTXOResponse transactionId
+                         * @property {string|null} [address] GetAddressUTXOResponse address
+                         * @property {number|null} [outputIndex] GetAddressUTXOResponse outputIndex
+                         * @property {number|null} [satoshis] GetAddressUTXOResponse satoshis
                          */
 
                         /**
@@ -8236,6 +8240,38 @@ $root.org = (function() {
                                     if (properties[keys[i]] != null)
                                         this[keys[i]] = properties[keys[i]];
                         }
+
+                        /**
+                         * GetAddressUTXOResponse transactionId.
+                         * @member {string} transactionId
+                         * @memberof org.dash.platform.dapi.v0.GetAddressUTXOResponse
+                         * @instance
+                         */
+                        GetAddressUTXOResponse.prototype.transactionId = "";
+
+                        /**
+                         * GetAddressUTXOResponse address.
+                         * @member {string} address
+                         * @memberof org.dash.platform.dapi.v0.GetAddressUTXOResponse
+                         * @instance
+                         */
+                        GetAddressUTXOResponse.prototype.address = "";
+
+                        /**
+                         * GetAddressUTXOResponse outputIndex.
+                         * @member {number} outputIndex
+                         * @memberof org.dash.platform.dapi.v0.GetAddressUTXOResponse
+                         * @instance
+                         */
+                        GetAddressUTXOResponse.prototype.outputIndex = 0;
+
+                        /**
+                         * GetAddressUTXOResponse satoshis.
+                         * @member {number} satoshis
+                         * @memberof org.dash.platform.dapi.v0.GetAddressUTXOResponse
+                         * @instance
+                         */
+                        GetAddressUTXOResponse.prototype.satoshis = 0;
 
                         /**
                          * Creates a new GetAddressUTXOResponse instance using the specified properties.
@@ -8261,6 +8297,14 @@ $root.org = (function() {
                         GetAddressUTXOResponse.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
+                            if (message.transactionId != null && Object.hasOwnProperty.call(message, "transactionId"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.transactionId);
+                            if (message.address != null && Object.hasOwnProperty.call(message, "address"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.address);
+                            if (message.outputIndex != null && Object.hasOwnProperty.call(message, "outputIndex"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.outputIndex);
+                            if (message.satoshis != null && Object.hasOwnProperty.call(message, "satoshis"))
+                                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.satoshis);
                             return writer;
                         };
 
@@ -8295,6 +8339,18 @@ $root.org = (function() {
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
                                 switch (tag >>> 3) {
+                                case 1:
+                                    message.transactionId = reader.string();
+                                    break;
+                                case 2:
+                                    message.address = reader.string();
+                                    break;
+                                case 3:
+                                    message.outputIndex = reader.uint32();
+                                    break;
+                                case 4:
+                                    message.satoshis = reader.uint32();
+                                    break;
                                 default:
                                     reader.skipType(tag & 7);
                                     break;
@@ -8330,6 +8386,18 @@ $root.org = (function() {
                         GetAddressUTXOResponse.verify = function verify(message) {
                             if (typeof message !== "object" || message === null)
                                 return "object expected";
+                            if (message.transactionId != null && message.hasOwnProperty("transactionId"))
+                                if (!$util.isString(message.transactionId))
+                                    return "transactionId: string expected";
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                if (!$util.isString(message.address))
+                                    return "address: string expected";
+                            if (message.outputIndex != null && message.hasOwnProperty("outputIndex"))
+                                if (!$util.isInteger(message.outputIndex))
+                                    return "outputIndex: integer expected";
+                            if (message.satoshis != null && message.hasOwnProperty("satoshis"))
+                                if (!$util.isInteger(message.satoshis))
+                                    return "satoshis: integer expected";
                             return null;
                         };
 
@@ -8344,7 +8412,16 @@ $root.org = (function() {
                         GetAddressUTXOResponse.fromObject = function fromObject(object) {
                             if (object instanceof $root.org.dash.platform.dapi.v0.GetAddressUTXOResponse)
                                 return object;
-                            return new $root.org.dash.platform.dapi.v0.GetAddressUTXOResponse();
+                            var message = new $root.org.dash.platform.dapi.v0.GetAddressUTXOResponse();
+                            if (object.transactionId != null)
+                                message.transactionId = String(object.transactionId);
+                            if (object.address != null)
+                                message.address = String(object.address);
+                            if (object.outputIndex != null)
+                                message.outputIndex = object.outputIndex >>> 0;
+                            if (object.satoshis != null)
+                                message.satoshis = object.satoshis >>> 0;
+                            return message;
                         };
 
                         /**
@@ -8356,8 +8433,25 @@ $root.org = (function() {
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        GetAddressUTXOResponse.toObject = function toObject() {
-                            return {};
+                        GetAddressUTXOResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.transactionId = "";
+                                object.address = "";
+                                object.outputIndex = 0;
+                                object.satoshis = 0;
+                            }
+                            if (message.transactionId != null && message.hasOwnProperty("transactionId"))
+                                object.transactionId = message.transactionId;
+                            if (message.address != null && message.hasOwnProperty("address"))
+                                object.address = message.address;
+                            if (message.outputIndex != null && message.hasOwnProperty("outputIndex"))
+                                object.outputIndex = message.outputIndex;
+                            if (message.satoshis != null && message.hasOwnProperty("satoshis"))
+                                object.satoshis = message.satoshis;
+                            return object;
                         };
 
                         /**

@@ -7569,7 +7569,10 @@ proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.toObject = func
  */
 proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    transactionId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    address: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    outputIndex: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    satoshis: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -7606,6 +7609,22 @@ proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.deserializeBinaryFromRead
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTransactionId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setOutputIndex(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setSatoshis(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -7635,6 +7654,106 @@ proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.serializeBinary
  */
 proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getTransactionId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getOutputIndex();
+  if (f !== 0) {
+    writer.writeUint32(
+      3,
+      f
+    );
+  }
+  f = message.getSatoshis();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string transaction_id = 1;
+ * @return {string}
+ */
+proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.getTransactionId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse} returns this
+ */
+proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.setTransactionId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string address = 2;
+ * @return {string}
+ */
+proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse} returns this
+ */
+proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.setAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional uint32 output_index = 3;
+ * @return {number}
+ */
+proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.getOutputIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse} returns this
+ */
+proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.setOutputIndex = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional uint32 satoshis = 4;
+ * @return {number}
+ */
+proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.getSatoshis = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse} returns this
+ */
+proto.org.dash.platform.dapi.v0.GetAddressUTXOResponse.prototype.setSatoshis = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 

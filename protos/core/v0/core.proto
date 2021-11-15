@@ -226,4 +226,8 @@ message GetAddressUTXORequest {
   string address = 1;
 }
 message GetAddressUTXOResponse {
+  string transaction_id = 1;
+  string address = 2;
+  uint32 output_index = 3;
+  uint32 satoshis = 4;
 }
