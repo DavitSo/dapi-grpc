@@ -43,6 +43,8 @@ const {
             GetTransactionFeeResponse: PBJSGetTransactionFeeResponse,
             GetAddressTransactionsRequest: PBJSGetAddressTransactionsRequest,
             GetAddressTransactionsResponse: PBJSGetAddressTransactionsResponse,
+            GetAddressUTXORequest: PBJSGetAddressUTXORequest,
+            GetAddressUTXOResponse: PBJSGetAddressUTXOResponse,
           },
         },
       },
@@ -60,7 +62,8 @@ const {
   TransactionsWithProofsResponse: ProtocTransactionsWithProofsResponse,
   GetAddressBalanceResponse: ProtocGetAddressBalanceResponse,
   GetTransactionFeeResponse: ProtocGetTransactionFeeResponse,
-  GetAddressTransactionsResponse: ProtocGetAddressTransactionsResponse
+  GetAddressTransactionsResponse: ProtocGetAddressTransactionsResponse,
+  GetAddressUTXOResponse: ProtocGetAddressUTXOResponse,
 } = require('./core_protoc');
 
 const getCoreDefinition = require('../../../../lib/getCoreDefinition');
@@ -101,6 +104,10 @@ class CorePromiseClient {
 
     this.client.getAddressBalance = promisify(
       this.client.getAddressBalance.bind(this.client),
+    );
+
+    this.client.getAddressUTXO = promisify(
+      this.client.getAddressUTXO.bind(this.client),
     );
 
     this.client.getTransactionFee = promisify(
@@ -358,6 +365,37 @@ class CorePromiseClient {
             ),
             protobufToJsonFactory(
               PBJSGetAddressBalanceRequest,
+            ),
+          ),
+        ],
+        ...options,
+      },
+    );
+  }
+
+  /**
+   * @param {!GetAddressUTXORequest} getAddressUTXORequest
+   * @param {?Object<string, string>} metadata
+   * @param {CallOptions} [options={}]
+   * @return {Promise<!GetAddressUTXOResponse>}
+   */
+  getAddressUTXO(getAddressUTXORequest, metadata = {}, options = {}) {
+    if (!isObject(metadata)) {
+      throw new Error('metadata must be an object');
+    }
+
+    return this.client.getAddressUTXO(
+      getAddressUTXORequest,
+      convertObjectToMetadata(metadata),
+      {
+        interceptors: [
+          jsonToProtobufInterceptorFactory(
+            jsonToProtobufFactory(
+              ProtocGetAddressUTXOResponse,
+              PBJSGetAddressUTXOResponse,
+            ),
+            protobufToJsonFactory(
+              PBJSGetAddressUTXORequest,
             ),
           ),
         ],
